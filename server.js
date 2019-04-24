@@ -1,13 +1,13 @@
 const express          = require('express');
 const app              = express();
-const ordersController = require('./controllers/ordersController');
-const usersController  = require('./controllers/usersController');
+
 const methodOverride   = require('method-override');
 const bodyParser       = require('body-parser');
 const session          = require('express-session');
 require('./db/db');
 
-
+const orderController = require('./controllers/orderController');
+const userController  = require('./controllers/userController');
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -21,8 +21,8 @@ app.use(session({
     //this is what should be done for logins, many laws make you do this as well
   }))
 
-app.use('/order', ordersController);
-app.use('/user', usersController);
+app.use('/order', orderController);
+app.use('/user', userController);
 
 
 
