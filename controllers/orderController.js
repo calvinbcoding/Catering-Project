@@ -32,8 +32,11 @@ router.post('/', (req, res) => {
             res.send(err);
         } else {
             User.findById(req.body.userId, (err, foundUser) => {
+                console.log(foundUser);
                 foundUser.orders.push(createdOrder);
-                foundUser.save((err, savedUser) = > {
+                console.log(createdOrder);
+                foundUser.save((err, savedUser) => {
+                    console.log(savedUser)
                     res.redirect('/orders');
                 });
             });
