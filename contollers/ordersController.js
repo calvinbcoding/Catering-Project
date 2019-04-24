@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Article = require('../models/Order');
-const Author  = require('../models/User');
+const Order = require('../models/Order');
+const User
+  = require('../models/User');
 
 router.get('/new',  async (req, res) =>{
     try{
@@ -19,3 +20,5 @@ router.get('/', async (req, res) => {
         const foundOrders = await 
     }
 })
+
+module.exports = router;
