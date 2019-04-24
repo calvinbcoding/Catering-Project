@@ -7,7 +7,7 @@ const User
 router.get('/new',  async (req, res) =>{
     try{
         const allUsers = await allUsers.find({});
-        res.render('orders/new.ejs', {
+        res.render('order/new.ejs', {
             users: allUsers
         });
     } catch(err) {
