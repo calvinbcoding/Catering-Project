@@ -44,4 +44,28 @@ router.post('/', (req, res) => {
     });
 });
 
+//order show route
+
+router.get('/:id', async (req, res) => {
+    try {
+        const foundUser = await User.findOne({'orders': req.params.id}).populate({path: 'orders', match: {_id: req.params.id}})
+
+        console.log(foundUser);
+        res.render('orders/show.ejs', {
+          user: foundUser,
+          order: foundUser.orders[0]
+        })
+  
+    } catch(err){
+      res.send(err);
+    }
+  
+  });
+  
+
+
+
+
+
+
 module.exports = router;
