@@ -3,6 +3,9 @@ const router = express.Router();
 const Order = require('../models/Order');
 const User = require('../models/User');
 
+
+
+//order new
 router.get('/new',  async (req, res) =>{
     try{
         const allUsers = await allUsers.find({});
@@ -13,7 +16,7 @@ router.get('/new',  async (req, res) =>{
         res.send(err);
     }
 });
-
+//order index
 router.get('/', async (req, res) => {
     try {
         const foundOrders = await Order.find({});
@@ -26,6 +29,8 @@ router.get('/', async (req, res) => {
     }
 });
 
+
+//order create
 router.post('/', (req, res) => {
     Order.create(req.body, (err, createdOrder)=> {
         if(err){
