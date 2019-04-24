@@ -1,3 +1,4 @@
+
 # Catering-Project
 
 Project # 2 Full-Stack App:
@@ -17,7 +18,10 @@ The  Orders Model:
 
 
 Division of work:
-Initially we have divided the 
+Initially we have divided the MVP into:
+Dave: views pages
+Joe: Models
+Calvin: Project manager role: Everything relating to GitHub, setting up repo, resolving MErge conflicts, completing Readme, file structure and wireframe. then helping with routes until we have a working model. At this point I am going to help with the front end; as well as aiding in any  areas that are lagging. This way we don't have 
 Dave will be primarily focused on the backend details including 
 
 
