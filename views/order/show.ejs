@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Order Show</title>
+  </head>
+  <body>
+    <header>
+      <h1><%=order.caterer+ "'s" + order.type%></h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+    <section>
+    <a href="/user/<%=user._id%>"><%=user.username%></a> would you like to purchase <%=order.caterer+ "'s" + order.type%>?
+    </section>
+    <section>
+    <a href="/order/<%=article._id%>/edit">Edit</a>
+        <form action="/order/<%=article._id%>?_method=DELETE" method="post">
+            <input type="submit" value="Delete Order"/>
+        </form>
+    </section>
+    </main>
+  </body>
+</html>

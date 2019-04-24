@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome</title>
+</head>
+<body>
+
+<h1>Welcome to Our Caterer Comparison App!</h1>
+
+<p>
+We help you choose the right caterer for the right price.  If you are new to our site, please register.  If you've been here before, please login.
+</p>
+
+<h3>Register</h3>
+
+<form action="/auth/register" method="POST">
+  <input type="text" name="username" placeholder="username">
+  <input type="password" name="password" placeholder="password">  
+  <button type="submit">Register</button>
+</form>
+
+
+  <h3>Login</h3>
+  <form action="/auth/login" method="POST">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <button type="submit">Login</button>
+  </form>
+
+
+  <small><%= message %></small>
+
+
+
+</body>
+</html>

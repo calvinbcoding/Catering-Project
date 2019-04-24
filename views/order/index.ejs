@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1><%=article.title%></h1>
+      <small>by: <a href="/authors/<%=author._id%>"><%=author.name%></a> </small>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/order">See this orders</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h2>All of the Orders</h2>
+      <ul>
+        <% for(let i = 0; i < order.length; i++){ %>
+          <li>
+            <a href="/order/<%=order[i]._id%>"><%=order.caterer+ "'s" + order.type%></a>
+          </li>
+        <% } %>
+      </ul>
+    </main>
+  </body>
+</html>
