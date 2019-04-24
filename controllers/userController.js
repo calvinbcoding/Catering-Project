@@ -5,21 +5,54 @@ const Order = require('../models/Order');
 
 
 
-//   router.get('/:id', (req, res) => {
+//user index route
+router.get('/', (req, res) => {
+
+    // show all of the resource
+    User.find({}, (err, foundUser) => {
+      if(err){
+        res.send(err)
+      } else {
+        res.render('user/index.ejs', {
+          user: foundUser
+        })
+      }
+    });
+  });
   
 
-//     User.findById(req.params.id)
-//       .populate('order')
-//       .exec((err, foundUser) => {
-//         console.log(foundUser, "<----- foundAuthor in the show route")
-  
-//         res.render('user/show.ejs', {
-//           user: foundUser
-//       });
-//   });
-// });
 
+  //User new route 
+  router.get('/new', async (req, res)=>{
+    try {
+       
+      const allUsers = await User.find({});
+ 
+ 
+     res.render('user/new.ejs', {
+         user: allUsers
+       });
+ 
+   } catch (err) {
+ 
+       res.send(err);
+   }
+ });
 
+//user show
+  router.get('/:id', async (req, res) => {
+
+    try {
+        const foundUser = await User.findById(req.params.id);
+        res.render('/user/show.ejs', {
+            user: foundUser
+        });
+
+    } catch (err) {
+        res.send(err)
+    }
+   
+});
 
 
 

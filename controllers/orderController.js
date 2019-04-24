@@ -17,8 +17,8 @@ router.get('/new',  async (req, res) =>{
 router.get('/', async (req, res) => {
     try {
         const foundOrders = await Order.find({});
-        res.render('orders/index.ejs', {
-            orders: foundOrders,
+        res.render('order/index.ejs', {
+            order: foundOrders,
 
         });
     } catch (err) {
@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
                 console.log(createdOrder);
                 foundUser.save((err, savedUser) => {
                     console.log(savedUser)
-                    res.redirect('/orders');
+                    res.redirect('/order');
                 });
             });
         }
@@ -48,10 +48,10 @@ router.post('/', (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const foundUser = await User.findOne({'orders': req.params.id}).populate({path: 'orders', match: {_id: req.params.id}})
+        const foundUser = await User.findOne({'order': req.params.id}).populate({path: 'order', match: {_id: req.params.id}})
 
         console.log(foundUser);
-        res.render('orders/show.ejs', {
+        res.render('order/show.ejs', {
           user: foundUser,
           order: foundUser.orders[0]
         })
