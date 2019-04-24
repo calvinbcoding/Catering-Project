@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const Article = require('../models/Order');
-const Author  = require('../models/User');
+const Order = require('../models/Order');
+const User
+  = require('../models/User');
 
 router.get('/new',  async (req, res) =>{
     try{
         const allUsers = await allUsers.find({});
-        res.render('orders/new.ejs', {
+        res.render('order/new.ejs', {
             users: allUsers
         });
     } catch(err) {
@@ -19,3 +20,5 @@ router.get('/', async (req, res) => {
         const foundOrders = await 
     }
 })
+
+module.exports = router;
