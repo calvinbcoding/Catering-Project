@@ -19,6 +19,6 @@ router.get('/', async (req, res) => {
     try {
         const foundOrders = await 
     }
-})
+});
 
 module.exports = router;
