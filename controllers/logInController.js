@@ -14,26 +14,13 @@ const User = require('../models/User');
 //define and require bcrypt.  bcrypt is middleware that hashes and salts password string
 const bcrypt = require('bcryptjs');
 
-//route a get request to the login page
-router.get('/login', (req, res) => {
-    //render the page with the render method on the request object
-    res.render('login.ejs', {
-        //inject variables - message becomes the message that is stored in the user session on the session object
-        message: req.session.message
-    })
-});
 
 
 // Creating what is called a hash - which is an encrypted string, based on a really
 // complex mathmatical formula
-
-
 // hash string
-
 // Salt is like a key to your hash
-
 // hash and salt get combined
-
 // const hashedString = bcyrpt.hashSync('Your Password here', bcrypt.genSaltSync(10));
 router.post('/register', async (req, res) => {
 
