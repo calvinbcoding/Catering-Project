@@ -5,21 +5,10 @@
     <title></title>
   </head>
   <body>
-    <header>
-      <h1>Edit <%=order.caterer+ "'s" + order.type%></h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/order">All Orders</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <% include ../partials/nav %>
     <main>
-      <h2>Edit</h2>
+      <h1>Edit This Order</h1>
+       <a href= "/order/<%=order._id%>/edit">EDIT THIS ORDER</a>
       <form action="/order/<%=order._id%>?_method=PUT" method="post">
       <input type="text" name="caterer" placeholder="change the caterer">
       <input type="text" name="type" placeholder="change the food">
