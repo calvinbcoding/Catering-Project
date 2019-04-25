@@ -1,3 +1,19 @@
+
+html,
 body {
-    background-color: #333333
+    height: 100%;
+}
+
+#page-content {
+    flex: 1 0 auto;
+}
+
+#sticky-footer {
+    flex-shrink: none;
+}
+
+
+body {
+    background: hsl(0, 0%, 100%);
+    background: linear-gradient(to bottom, rgb(180, 179, 179), #9b9b9b);
 }
