@@ -34,12 +34,10 @@ router.get('/new', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const createdOrder = await Order.create(req.body) 
-    } catch{ 
-
-    } else {
+    } catch(err){ 
             User.findById(req.body.userId, (err, foundUser) => {
                 console.log(foundUser);
-                foundUser.orders.push(createdOrder);
+                foundUser.order.push(createdOrder);
                 console.log(createdOrder);
                 foundUser.save((err, savedUser) => {
                     console.log(savedUser)
@@ -48,7 +46,6 @@ router.post('/', async (req, res) => {
             });
         }
     });
-});
 
 //order show route
 
