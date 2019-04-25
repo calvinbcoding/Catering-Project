@@ -6,7 +6,7 @@ const connectionString = 'mongodb://localhost/catering';
 
 mongoose.connect(connectionString, {useNewUrlParser: true,
   useCreateIndex: true,
-  useFindAndModify: true});
+  useFindAndModify: false});
 
 
 mongoose.connection.on('connected', () => {
