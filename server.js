@@ -4,6 +4,7 @@ const app              = express();
 const methodOverride   = require('method-override');
 const bodyParser       = require('body-parser');
 const session          = require('express-session');
+const morgan = require('morgan');
 require('./db/db');
 
 const orderController = require('./controllers/orderController');
