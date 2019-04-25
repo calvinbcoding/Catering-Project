@@ -15,7 +15,7 @@
 
   
   
-  <form action="/user/:id" method="POST">
+  <form action="/user/<%=user._id%>?_method=PUT" method="post">
     <input type="text" name="username" placeholder="username">
     <input type="password" name="password" placeholder="password">
     
@@ -24,11 +24,3 @@
 </body>
 </div>
 </html>
-
-
-    <h2><%=user.username%></h2>
-
-            <a href= "/<%=user._id%>/edit">EDIT THIS USER</a>
-<form action="/user/<%=user._id%>?_method=put" method="POST">
-                <button>DELETE</button>
-</form> 

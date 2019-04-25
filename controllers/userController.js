@@ -5,6 +5,36 @@ const Order = require('../models/Order');
 
 
 
+
+
+
+
+// //USER EDIT ROUTE
+// router.get('user/:id/edit', (req, res) => {
+//   const foundUser = User.findById(req.params.id, (err, foundUser) => {
+//     console.log(foundUser)
+//     res.render('user/edit.ejs', {
+//       user: foundUser
+//     })
+//   })
+// })
+
+
+//USER UPDATE ROUTE
+router.put('/:_id', async (req, res) => {
+
+  try {
+
+    const updatedUser = await User.findByIdAndUpdate(req.params._id, req.body, {new:true});
+    console.log(updatedUser)
+  } catch (err) {
+    console.log(err);
+   
+  }
+ res.redirect('/user/id');
+});
+
+
 //user index route
 router.get('/', (req, res) => {
 
@@ -39,6 +69,8 @@ router.get('/', (req, res) => {
    }
  });
 
+
+
 //user show
   router.get('/:id', async (req, res) => {
 
@@ -58,48 +90,21 @@ router.get('/', (req, res) => {
 
 
 
-//USER EDIT ROUTE
-router.get('user/:id/edit', (req, res)=>{
-  User.findById(req.params.id, (err, foundUser)=>{
+
+//edit route
+router.get("/:_id/edit", async (req,res)=>{
+  try {
+    const foundUser = await User.findById(req.params._id)
+    console.log(foundUser)
     res.render('user/edit.ejs', {
-      user: foundUser
+      user:foundUser
     })
-  })
+
+  }catch(err){
+    res.send(err)
+  }
+
 })
-// router.get('/:id/edit', async (req, res) => {
-
-//   try{
-
-//   const foundUser = await User.findById(req.params.id);
-
-  
-
-//   }catch (err){
-//     console.log(err);
-//     res.render('user/edit.ejs', {
-//       user: foundUser
-//     })
-    
-//    }
-// });   
-
-
-//USER UPDATE ROUTE
-router.put('/:id', async (req, res)=>{
- 
- try{
-
-  const foundUserFromDB = await User.findByIdAndUpdate(req.params.id, req.body);
-
- } catch(err){
-   console.log(err);
-   res.redirect('/user/id');
- }
-
-});
-
-
-
 
 
 //delete route
@@ -114,9 +119,8 @@ router.delete('/:id', async (req, res) => {
         })
     }catch(err){
         console.log(err);
-        res.redirect('/user');
     }
-    
+    res.redirect('/user');
 });
 
 module.exports = router;
