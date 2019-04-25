@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
         })
       }
     });
-  });5
+  });
 
 
 
@@ -43,9 +43,11 @@ router.get('/', (req, res) => {
   router.get('/:id', async (req, res) => {
 
     try {
+        const foundOrder = await Order.findOne({user:req.params.id})
         const foundUser = await User.findById(req.params.id);
-        res.render('/user/show.ejs', {
-            user: foundUser
+        res.render('user/show.ejs', {
+            user: foundUser,
+            order: foundOrder
         });
 
     } catch (err) {
@@ -54,6 +56,23 @@ router.get('/', (req, res) => {
    
 });
 
+//delete route
+router.delete('/:id', async (req, res) => {
+    
+    try {
+        const deletedUser = await User.findByIdAndDelete(req.params.id)
+        const deletedOrder = await Order.deleteMany({
+            _id: {
+                $in: user.order
+            }
+        })
+        res.redirect('/user')
 
+
+    }catch(err){
+        res.send(err)
+    }
+
+});
 
 module.exports = router;

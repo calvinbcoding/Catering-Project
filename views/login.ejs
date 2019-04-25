@@ -3,6 +3,7 @@
 <head>
   <title>Welcome</title>
 </head>
+<% include ./partials/nav %>
 <body>
 
 <h1>Welcome to Our Caterer Comparison App!</h1>
@@ -21,7 +22,7 @@ We help you choose the right caterer for the right price.  If you are new to our
 
 
   <h3>Login</h3>
-  <form action="/auth/login" method="POST">
+  <form action="catering/login" method="POST">
     <input type="text" name="username" placeholder="username">
     <input type="password" name="password" placeholder="password">
     <button type="submit">Login</button>

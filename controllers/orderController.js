@@ -4,19 +4,16 @@ const Order = require('../models/Order');
 const User = require('../models/User');
 
 
+router.get('/new', async (req, res) => {
 
-//order new
-router.get('/new',  async (req, res) =>{
-    try{
-        const allUsers = await allUsers.find({});
-        res.render('order/new.ejs', {
-            users: allUsers
-        });
-    } catch(err) {
-        res.send(err);
+    try {
+        res.render('order/new.ejs');
+    }catch(err){
+        res.send(err)
     }
-});
-//order index
+    
+})
+
 router.get('/', async (req, res) => {
     try {
         const foundOrders = await Order.find({});
@@ -67,7 +64,24 @@ router.get('/:id', async (req, res) => {
   
   });
   
+//order delete route
+router.delete('/:id', async (req, res) => {
 
+    try {
+        const deletedOrder = await Order.findByIdAndDelete(req.params.id)
+        const deletedUser = await User.deleteMany({
+            _id: {
+                $in: order.user
+            }
+        })
+        res.redirect('/order')
+
+
+    } catch (err) {
+        res.send(err)
+    }
+
+});
 
 
 
