@@ -4,8 +4,14 @@ const Order = require('../models/Order');
 const User = require('../models/User');
 
 
-router.get('/new', (req, res) => {
-    res.render('order/new.ejs');
+router.get('/new', async (req, res) => {
+
+    try {
+        res.render('order/new.ejs');
+    }catch(err){
+        res.send(err)
+    }
+    
 })
 
 router.get('/', async (req, res) => {
