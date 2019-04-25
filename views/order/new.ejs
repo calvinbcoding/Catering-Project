@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% include ../partials/head %>
     <meta charset="utf-8">
     <title></title>
   </head>
   <% include ../partials/nav %>
+  
   <body>
+<div class="container">
     <header>
       <h1>Make a New Order</h1>
      <form action="/order" method="POST">
@@ -14,5 +17,8 @@
         <input type="submit">
     </form>
     </main>
+    <% include ../partials/scripts %>
+   </div>
   </body>
+
 </html>

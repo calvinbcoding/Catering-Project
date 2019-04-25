@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% include ../partials/head %>
     <meta charset="utf-8">
     <title>Order Show</title>
   </head>
   <% include ../partials/nav %>
+  <div class="container">
   <body>
     <header>
       <h1><%=order.caterer+ "'s" + order.type%></h1>
@@ -15,5 +17,7 @@
         </form>
     </section>
     </main>
+    <% include ../partials/scripts %>
   </body>
+  </div>
 </html>
