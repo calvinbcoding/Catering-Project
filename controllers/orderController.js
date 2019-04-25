@@ -32,10 +32,11 @@ router.get('/new', async (req, res) => {
 
 //order create
 router.post('/', async (req, res) => {
-    createdOrderOrder.create(req.body, (err, createdOrder)=> {
-        if(err){
-            res.send(err);
-        } else {
+    try {
+        const createdOrder = await Order.create(req.body) 
+    } catch{ 
+
+    } else {
             User.findById(req.body.userId, (err, foundUser) => {
                 console.log(foundUser);
                 foundUser.orders.push(createdOrder);
