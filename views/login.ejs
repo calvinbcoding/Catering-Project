@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <% include ../partials/head %>
   <title>Welcome</title>
 </head>
-<% include ./partials/nav %>
+<% include /partials/nav %>
+
 <body>
+<div class="container">
 
 <h1>Welcome to Our Caterer Comparison App!</h1>
 
@@ -31,7 +34,7 @@ We help you choose the right caterer for the right price.  If you are new to our
 
   <small><%= message %></small>
 
-
-
+<div>
+<% include ../partials/scripts %>
 </body>
 </html>

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% include ../partials/head %>
     <meta charset="utf-8">
     <title></title>
   </head>
+
   <body>
     <% include ../partials/nav %>
+    <div class="container">
     <main>
       <h1>Edit This Order</h1>
        <a href= "/order/<%=order._id%>/edit">EDIT THIS ORDER</a>
@@ -15,5 +18,9 @@
 
       </form>
     </main>
+    <% include ../partials/scripts %>
+   </div>
   </body>
+ 
 </html>
+
