@@ -56,6 +56,52 @@ router.get('/', (req, res) => {
    
 });
 
+
+
+//USER EDIT ROUTE
+router.get('user/:id/edit', (req, res)=>{
+  User.findById(req.params.id, (err, foundUser)=>{
+    res.render('user/edit.ejs', {
+      user: foundUser
+    })
+  })
+})
+// router.get('/:id/edit', async (req, res) => {
+
+//   try{
+
+//   const foundUser = await User.findById(req.params.id);
+
+  
+
+//   }catch (err){
+//     console.log(err);
+//     res.render('user/edit.ejs', {
+//       user: foundUser
+//     })
+    
+//    }
+// });   
+
+
+//USER UPDATE ROUTE
+router.put('/:id', async (req, res)=>{
+ 
+ try{
+
+  const foundUserFromDB = await User.findByIdAndUpdate(req.params.id, req.body);
+
+ } catch(err){
+   console.log(err);
+   res.redirect('/user/id');
+ }
+
+});
+
+
+
+
+
 //delete route
 router.delete('/:id', async (req, res) => {
     
@@ -66,13 +112,11 @@ router.delete('/:id', async (req, res) => {
                 $in: user.order
             }
         })
-        res.redirect('/user')
-
-
     }catch(err){
-        res.send(err)
+        console.log(err);
+        res.redirect('/user');
     }
-
+    
 });
 
 module.exports = router;
