@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<% include('partials/nav') %>
 <body>
- <h1><%=order.caterer+ "'s" + order.type%></h1>
+ <h1><%=user.username%></h1>
 <form action="/user/<%=user._id%>?_method=DELETE" method="POST">
                 <button>DELETE</button>
 </form>

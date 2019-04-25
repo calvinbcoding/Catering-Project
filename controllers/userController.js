@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
 
     try {
         const foundUser = await User.findById(req.params.id);
-        res.render('/user/show.ejs', {
+        res.render('user/show.ejs', {
             user: foundUser
         });
 
