@@ -20,10 +20,10 @@ router.get('/', async (req, res) => {
 
 
 //new
-router.get('/new', async (req, res) => {
+router.get('/new', (req, res) => {
 
     try {
-        res.render('order/new.ejs');
+        res.redirect('order/new.ejs');
     }catch(err){
         res.send(err)
     }
