@@ -5,36 +5,6 @@ const Order = require('../models/Order');
 
 
 
-
-
-
-
-// //USER EDIT ROUTE
-// router.get('user/:id/edit', (req, res) => {
-//   const foundUser = User.findById(req.params.id, (err, foundUser) => {
-//     console.log(foundUser)
-//     res.render('user/edit.ejs', {
-//       user: foundUser
-//     })
-//   })
-// })
-
-
-//USER UPDATE ROUTE
-router.put('/:_id', async (req, res) => {
-
-  try {
-
-    const updatedUser = await User.findByIdAndUpdate(req.params._id, req.body, {new:true});
-    console.log(updatedUser)
-  } catch (err) {
-    console.log(err);
-   
-  }
- res.redirect('/user/id');
-});
-
-
 //user index route
 router.get('/', (req, res) => {
 
@@ -106,6 +76,20 @@ router.get("/:_id/edit", async (req,res)=>{
 
 })
 
+
+//USER UPDATE ROUTE
+router.put('/:_id', async (req, res) => {
+
+  try {
+
+    const updatedUser = await User.findByIdAndUpdate(req.params._id, req.body, {new:true});
+    console.log(updatedUser)
+  } catch (err) {
+    console.log(err);
+   
+  }
+ res.redirect('/user');
+});
 
 //delete route
 router.delete('/:id', async (req, res) => {
