@@ -9,8 +9,8 @@
     <header>
       <h1><%=order.caterer+ "'s" + order.type%></h1>
     <section>
-    <a href="/order/<%=article._id%>/edit">Edit</a>
-        <form action="/order/<%=article._id%>?_method=DELETE" method="post">
+    <a href="/order/<%=order._id%>/edit">Edit</a>
+        <form action="/order/<%=order._id%>?_method=DELETE" method="post">
             <input type="submit" value="Delete Order"/>
         </form>
     </section>

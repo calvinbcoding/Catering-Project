@@ -8,6 +8,7 @@
     <% include ../partials/nav %>
     <main>
       <h1>Edit This Order</h1>
+       <a href= "/order/<%=order._id%>/edit">EDIT THIS ORDER</a>
       <form action="/order/<%=order._id%>?_method=PUT" method="post">
       <input type="text" name="caterer" placeholder="change the caterer">
       <input type="text" name="type" placeholder="change the food">
