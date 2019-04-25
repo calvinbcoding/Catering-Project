@@ -4,23 +4,11 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+
+  <% include ../partials/nav %>
+  
   <body>
-    <header>
-      <h1><%=order.title%></h1>
-     <small>by: <a href="/user/<%=user._id%>"><%=user.name%></a> </small> 
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/order">See this orders</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <h2>All of the Orders</h2>
+      <h1>All of the Orders</h1>
       <ul>
         <% for(let i = 0; i < order.length; i++){ %>
           <li>
