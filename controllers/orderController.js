@@ -7,9 +7,9 @@ const User = require('../models/User');
 //index
 router.get('/', async (req, res) => {
     try {
-        const foundOrders = await Order.find({});
+        const foundOrder = await Order.find({});
         res.render('order/index.ejs', {
-            order: foundOrders,
+            order: foundOrder,
 
         });
     } catch (err) {
@@ -22,48 +22,104 @@ router.get('/', async (req, res) => {
 //new
 router.get('/new', async (req, res) => {
 
+    const allOrder = await User.find({})
     try {
         res.render('order/new.ejs');
+        user: allUser
     }catch(err){
         res.send(err)
     }
     
-})
+});
 
-//order create
-router.post('/', async (req, res) => {
-    try {
-        const createdOrder = await Order.create(req.body) 
-    } catch(err){ 
-            User.findById(req.body.userId, (err, foundUser) => {
-                console.log(foundUser);
-                foundUser.order.push(createdOrder);
-                console.log(createdOrder);
-                foundUser.save((err, savedUser) => {
-                    console.log(savedUser)
-                    res.redirect('/order');
-                });
-            });
-        }
-    });
+
+// //order create
+// router.post('/', (req, res) => {
+//     console.log(req.body)
+// User.create(req.body, (err, newlyCreatedOrder) =>{
+//     console.log('created a new order for user ${req.body.username}');
+//     User.findById(req.body.username, function (err, foundUser)
+//     {
+//     foundUser.order.push(newlyCreatedOrder._id){
+//         _id : $in 
+//     };
+
+//     foundUser.save((err, savedUser) =>{
+//         console.log(savedUser);
+//         res.redirect('/order')
+//     });
+// });
+// })
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+//       //User new route 
+//   router.get('/new', async (req, res)=>{
+//     try {
+       
+//       const allUsers = await User.find({});
+ 
+ 
+//      res.render('user/new.ejs', {
+//          user: allUsers
+//        });
+ 
+//    } catch (err) {
+ 
+//        res.send(err);
+//    }
+//  });
 
 //order show route
-
 router.get('/:id', async (req, res) => {
-    try {
-        const foundUser = await User.findOne({'order': req.params.id}).populate({path: 'order', match: {_id: req.params.id}})
-
-        console.log(foundUser);
+    try{
+        const foundOrder = await Order.findById(req.params.id);
+        const foundUser = await User.findOne({"order": req.params.id});
+        
         res.render('order/show.ejs', {
-          user: foundUser,
-          order: foundUser.order[0]
+            order: foundOrder
         })
-  
-    } catch(err){
-      res.send(err);
+    }catch(err){
+        res.send(err);
     }
+});
+
+
+
+
+// router.get('/:id', async (req, res) => {
+//     try {
+//         const foundUser = await User.findOne({'order': req.params.id}).populate({path: 'order', match: {_id: req.params.id}})
+
+//         console.log(foundUser);
+//         res.render('order/show.ejs', {
+//           user: foundUser,
+//           order: foundUser.order[0]
+//         })
   
-  });
+//     } catch(err){
+//       res.send(err);
+//     }
+  
+//   });
 
   //order Edit
 
