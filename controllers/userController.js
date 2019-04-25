@@ -19,8 +19,20 @@ const Order = require('../models/Order');
 //   });
 // });
 
+//user show route
+router.get('/:id', async (req, res) => {
 
+    try {
+        const foundUser = await User.findById(req.params.id);
+        res.render('/user/show.ejs', {
+            user: foundUser
+        });
 
+    } catch (er) {
+        res.send(err)
+    }
+   
+});
 
 
 module.exports = router;
