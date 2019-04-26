@@ -33,7 +33,27 @@ router.get('/new', async (req, res) => {
 });
 
 
-// //order create
+
+//order create
+router.post('/', async (req, res) => {
+
+    try{
+        const newlyCreatedOrder = await User.create(req.body);
+        console.log(newlyCreatedOrder)
+        const foundUser = await User.findById(req.session.asasuserDbId);
+        console.log(foundUser);
+ 
+        foundUser.push(newlyCreatedOrder);
+        res.render('/order') 
+    } catch(err){
+        res.send(err)
+    }
+ });
+ 
+
+
+
+// /pull down order create
 // router.post('/', (req, res) => {
 //     console.log(req.body)
 // User.create(req.body, (err, newlyCreatedOrder) =>{
@@ -51,24 +71,6 @@ router.get('/new', async (req, res) => {
 // });
 // })
 // })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    
 //       //User new route 
