@@ -57,7 +57,7 @@ console.log(req.body)
 <<<<<<< HEAD
         const createdUser = await User.create(newUserRegistration);
 =======
-        const createdUser = await User.create(newUserSession);
+        const createdUs  weer = await User.create(newUserSession);
 >>>>>>> 392c144b6222125f7aad8e68ed95f47d6f3c7063
 
         req.session.createdUser = createdUser._id;
