@@ -23,12 +23,14 @@ const bcrypt = require('bcryptjs');
 // hash and salt get combined
 // const hashedString = bcyrpt.hashSync('Your Password here', bcrypt.genSaltSync(10));
 router.post('/', async (req, res) => {
-
+console.log(req.body)
+    //======== 3
     // First we must hash the password
     const password = req.body.password;
+    console.log(password)
     // The password hash is what we want to put in the Database
-    const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-
+    const passwordHash = await bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+    console.log(passwordHash)
 
     // create an object for the db entry, the properties of this object
     // will match up with our model
@@ -42,19 +44,16 @@ router.post('/', async (req, res) => {
         //
         const createdUser = await User.create(newUserSession);
 
-        req.session.usersDbId = createdUser._id;
+        req.session.createdUser = createdUser._id;
         // after you create the user, this is a great time to initialize you session object
         // add properties to the session object
         req.session.logged = true;
-
+        console.log(createdUser)
         res.redirect('/user');
 
     } catch (err) {
         res.send(err)
     }
-
-
-
 });
 
 
