@@ -22,22 +22,18 @@ router.get('/', (req, res) => {
 
 
 
-  //User new route 
-  router.get('/new', async (req, res)=>{
-    try {
-       
-      const allUsers = await User.find({});
- 
- 
-     res.render('user/new.ejs', {
-         user: allUsers
-       });
- 
-   } catch (err) {
- 
-       res.send(err);
-   }
- });
+//new
+router.get('/new', async (req, res) => {
+
+  const allOrder = await User.find({})
+  try {
+      res.render('order/new.ejs');
+      user: allUser
+  }catch(err){
+      res.send(err)
+  }
+  
+});
 
 
 //  //user post route

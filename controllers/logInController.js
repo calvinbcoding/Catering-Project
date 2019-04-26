@@ -14,15 +14,22 @@ const User = require('../models/User');
 //define and require bcrypt.  bcrypt is middleware that hashes and salts password string
 const bcrypt = require('bcryptjs');
 
+router.get('/', (req, res) => {
+    //render the page with the render method on the request object
+    res.render('login.ejs', {
+      //inject variables - message becomes the message that is stored in the user session on the session object
+      message: req.session.message
+    })
+  });
+  
 
 
-// Creating what is called a hash - which is an encrypted string, based on a really
-// complex mathmatical formula
-// hash string
-// Salt is like a key to your hash
-// hash and salt get combined
-// const hashedString = bcyrpt.hashSync('Your Password here', bcrypt.genSaltSync(10));
-router.post('/', async (req, res) => {
+
+router.post('/register', async (req, res) => {
+    if(req.body.caterer = "on"){
+        req.session.caterer = true;
+        console.log(req.session)
+    }
 console.log(req.body)
     //======== 3
     // First we must hash the password
@@ -44,7 +51,7 @@ console.log(req.body)
         //
         const createdUser = await User.create(newUserSession);
 
-        req.session.createdUser = createdUser._id;
+        req.session.userId = createdUser._id;
         // after you create the user, this is a great time to initialize you session object
         // add properties to the session object
         req.session.logged = true;
@@ -57,63 +64,66 @@ console.log(req.body)
 });
 
 
-// To compare our password and the hash we use compareSync
-// bcrypt.compareSync('you plain text password', 'hashedPassword')  // return true or false
 
-// make the form in login.ejs make a request to this
-// router.post('/login', async (req, res) => {
+//make the form in login.ejs make a request to this
+router.post('/login', async (req, res) => {
 
-//     // Query the database to see if the user exists
-//     try {
-//         const foundUser = await User.findOne({
-//             'username': req.body.username
-//         });
+    // Query the database to see if the user exists
+    try {
+        const foundUser = await User.findOne({
+            'username': req.body.username
+            
+        });
+          console.log(foundUser)
+          console.log(req.body)
 
-//         // Is foundUser a truthy value, if it is its the user object,
-//         // if we didn't find anything then foundUser === null a falsy value
-//         if (foundUser) {
+        // Is foundUser a truthy value, if it is its the user object,
+        // if we didn't find anything then foundUser === null a falsy value
+        if (foundUser) {
 
-//             // since the user exist compare the passwords
-//             if (bcrypt.compareSync(req.body.password, foundUser.password) === true) {
-//                 // set up the session
-//                 res.session.message = '';
-//                 req.session.logged = true;
-//                 req.session.usersDbId = foundUser._id;
+            // since the user exist compare the passwords
+            if (bcrypt.compareSync(req.body.password, foundUser.password) === true) {
+                // set up the session
+                res.session.message = '';
+                req.session.logged = true;
+                req.session.userId = createdUser._id;
 
-//                 console.log(req.session, ' successful in login')
-//                 res.redirect('/user');
+                console.log( ' successful in login')
+                res.redirect("/");
+        
 
-//             } else {
-//                 // redirect them back to the login with a message
-//                 req.session.message = "Username or password is incorrect";
-//                 res.redirect('/');
-//             }
+            } else {
+                // redirect them back to the login with a message
+                req.session.message = "Username or password is incorrect";
+                res.redirect('/');
+            }
 
-//         } else {
+        } else {
 
-//             req.session.message = 'Username or Password is incorrect';
+            req.session.message = 'Username or Password is incorrect';
 
-//             res.redirect('/');
-//         }
-
-
-//     } catch (err) {
-//         res.send(err);
-//     }
+            res.redirect('/');
+        }
 
 
+    } catch (err) {
+        res.send(err);
+    }
 
 
 
-// });
+
+
+});
 
 
 router.get('/logout', (req, res) => {
     req.session.destroy((err) => {
+        console.log(req.session)
         if (err) {
             res.send(err);
         } else {
-            res.redirect('/catering/login');
+            res.redirect('/');
         }
     })
 })

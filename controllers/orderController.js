@@ -3,6 +3,16 @@ const router = express.Router();
 const Order = require('../models/Order');
 const User = require('../models/User');
 
+      //User new route 
+    router.get('/new', async (req, res)=>{
+    try {
+        res.render('order/new.ejs');
+
+    } catch (err) {
+        res.send(err);
+    }
+    });
+
 
 //index
 router.get('/', async (req, res) => {
@@ -19,18 +29,18 @@ router.get('/', async (req, res) => {
 
 
 
-//new
-router.get('/new', async (req, res) => {
+// //new
+// router.get('/new', async (req, res) => {
 
-    const allOrder = await User.find({})
-    try {
-        res.render('order/new.ejs');
-        user: allUser
-    }catch(err){
-        res.send(err)
-    }
+//     try {
+//         res.render('order/new.ejs', {
+//         user: allUser,
+//         })
+//     }catch(err){
+//         res.send(err)
+//     }
     
-});
+// });
 
 
 
@@ -38,18 +48,22 @@ router.get('/new', async (req, res) => {
 router.post('/', async (req, res) => {
 
     try{
-        const newlyCreatedOrder = await User.create(req.body);
+        const newlyCreatedOrder = await Order.create(req.body);
         console.log(newlyCreatedOrder)
-        const foundUser = await User.findById(req.session.asasuserDbId);
-        console.log(foundUser);
+        const foundUser = req.session.userId;
  
-        foundUser.push(newlyCreatedOrder);
-        res.render('/order') 
+        foundUser.order.push(newlyCreatedOrder);
+        console.log(newlyCreatedOrder)
+        foundUser.save();
+        console.log(req.session)
+        res.redirect('/'); 
     } catch(err){
-        res.send(err)
+        console.log(err)
+        res.send(err);
+        
     }
+    
  });
- 
 
 
 
@@ -73,22 +87,7 @@ router.post('/', async (req, res) => {
 // })
 
    
-//       //User new route 
-//   router.get('/new', async (req, res)=>{
-//     try {
-       
-//       const allUsers = await User.find({});
- 
- 
-//      res.render('user/new.ejs', {
-//          user: allUsers
-//        });
- 
-//    } catch (err) {
- 
-//        res.send(err);
-//    }
-//  });
+
 
 //order show route
 router.get('/:id', async (req, res) => {

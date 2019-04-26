@@ -25,13 +25,6 @@ app.use(session({
 
 //route a get request to the login page
 //or /auth
-app.get('/', (req, res) => {
-  //render the page with the render method on the request object
-  res.render('login.ejs', {
-    //inject variables - message becomes the message that is stored in the user session on the session object
-    message: req.session.message
-  })
-});
 
 app.use(morgan('short'));
 
@@ -39,7 +32,9 @@ app.use('/order', orderController);
 app.use('/user', userController);
 app.use('/auth', logInController);
 
-
+app.get('/', (req , res)=>{
+  res.render('index.ejs')
+})
 
 
 app.listen(3000, ()=>{
