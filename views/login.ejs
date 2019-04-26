@@ -9,15 +9,26 @@
 <h1>Welcome!</h1>
 
 
-<form action="/auth" method="POST">
+<form action="/auth/register" method="POST">
   <div class="form-group">
     <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Name">
   </div>
+
+
   <div class="form-group">
     <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
   </div>
+  
+  Are you a caterer? <input type="checkbox" name="caterer">
+
   <button type="submit" class="btn btn-primary btn-lg btn-block">New User</button>
+
 </form>
+
+
+
+
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <p class="lead">We help you choose the right caterer for the right price.  If you are new to our site, please register.  If you've been here before, please login.</p>
@@ -26,16 +37,19 @@
 </div>
 
 
-<form action='/id' method="GET">
+<form action='/auth/login' method="POST">
   <div class="form-group">
     <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Name">
   </div>
   <div class="form-group">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input type="password" class="form-control" name= "password"id="exampleInputPassword1" placeholder="Password">
   </div>
   <button type="submit" class="btn btn-primary btn-lg btn-block">Show User</button>
 </form>
+<a href="/auth/logout">logout</a>
 <% include partials/main2 %>
 <% include partials/scripts %>
+
+
 
 </html>
