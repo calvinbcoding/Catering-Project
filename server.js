@@ -4,7 +4,8 @@ const app              = express();
 const methodOverride   = require('method-override');
 const bodyParser       = require('body-parser');
 const session          = require('express-session');
-const morgan = require('morgan');
+const morgan           = require('morgan');
+const bcrypt = require('bcryptjs');
 require('./db/db');
 
 const orderController = require('./controllers/orderController');
@@ -14,7 +15,8 @@ const logInController = require('./controllers/logInController')
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static('public'))
-
+// app.use(morgan);
+// app.use(cookie-session)
 
 app.use(session({
     secret: 'This is a random secret string that you would make up to protect your session',

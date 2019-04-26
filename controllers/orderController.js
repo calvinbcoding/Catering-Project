@@ -9,10 +9,8 @@ router.get('/', async (req, res) => {
     try {
         const foundOrder = await Order.find({});
         res.render('order/index.ejs', {
-            order: foundOrder,
-
-        });
-    } catch (err) {
+            order: foundOrder,});
+        } catch (err) {
         res.send(err);
     }
 });
@@ -25,7 +23,6 @@ router.get('/new', async (req, res) => {
     const allOrder = await User.find({})
     try {
         res.render('order/new.ejs');
-        user: allUser
     }catch(err){
         res.send(err)
     }
@@ -33,12 +30,20 @@ router.get('/new', async (req, res) => {
 });
 
 
-// //order create
-// router.post('/', (req, res) => {
-//     console.log(req.body)
-// User.create(req.body, (err, newlyCreatedOrder) =>{
+//order create
+router.post('/', async (req, res) => {
+    try{
+        const newlyCreatedOrder = await User.create(req.body);
+        const foundUser = await User.findByIdAndUpdate(req.session.userDbId);
+        foundUser.$push(newlyCreatedOrder);
+        res.render('/order')
+    } catch(err){
+        res.send(err)
+    }
+});
+             
 //     console.log('created a new order for user ${req.body.username}');
-//     User.findById(req.body.username, function (err, foundUser)
+//     User.findById(req.session.username)
 //     {
 //     foundUser.order.push(newlyCreatedOrder._id){
 //         _id : $in 
@@ -46,11 +51,10 @@ router.get('/new', async (req, res) => {
 
 //     foundUser.save((err, savedUser) =>{
 //         console.log(savedUser);
-//         res.redirect('/order')
+//         res.render('/order')
 //     });
 // });
-// })
-// })
+
 
 
 

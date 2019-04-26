@@ -32,25 +32,29 @@ router.post('/register', async (req, res) => {
 
     // create an object for the db entry, the properties of this object
     // will match up with our model
-    const userDbEntry = {};
-    //userDbEntry is an empty object that we use to hold the username and password from req.body form
-    userDbEntry.username = req.body.username;
-    userDbEntry.password = passwordHash;
+    const newUserRegistration = {};
+    //newUserRegistration is an empty object that we use to hold the username and password from req.body form
+    newUserRegistration.username = req.body.username;
+    newUserRegistration.password = passwordHash;
+
 
     try {
 
         //
-        const createdUser = await User.create(userDbEntry);
+        const createdUser = await User.create(newUserRegistration);
 
         // after you create the user, this is a great time to initialize you session object
         // add properties to the session object
         req.session.logged = true;
-        req.session.usersDbId = createdUser._id;
+        req.session.userDbId = createdUser._id;
+        req.session.
+
 
         res.redirect('/user');
 
     } catch (err) {
         res.send(err)
+        console.log('this error is originating from the registration')
     }
 
 
@@ -76,10 +80,10 @@ router.post('/login', async (req, res) => {
 
             // since the user exist compare the passwords
             if (bcrypt.compareSync(req.body.password, foundUser.password) === true) {
-                // set up the session
+                // set up the session 
                 res.session.message = '';
                 req.session.logged = true;
-                req.session.usersDbId = foundUser._id;
+                req.session.userDbId = foundUser._id;
 
                 console.log(req.session, ' successful in login')
                 res.redirect('/user');

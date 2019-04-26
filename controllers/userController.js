@@ -26,11 +26,11 @@ router.get('/', (req, res) => {
   router.get('/new', async (req, res)=>{
     try {
        
-      const allUsers = await User.find({});
+      const allUser = await User.findOne({});
  
  
      res.render('user/new.ejs', {
-         user: allUsers
+         user: allUser
        });
  
    } catch (err) {
