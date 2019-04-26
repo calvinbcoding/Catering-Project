@@ -33,24 +33,21 @@ router.get('/new', async (req, res) => {
 });
 
 
-// //order create
-// router.post('/', (req, res) => {
-//     console.log(req.body)
-// User.create(req.body, (err, newlyCreatedOrder) =>{
-//     console.log('created a new order for user ${req.body.username}');
-//     User.findById(req.body.username, function (err, foundUser)
-//     {
-//     foundUser.order.push(newlyCreatedOrder._id){
-//         _id : $in 
-//     };
-
-//     foundUser.save((err, savedUser) =>{
-//         console.log(savedUser);
-//         res.redirect('/order')
-//     });
-// });
-// })
-// })
+//order create
+router.post('/', (req, res) => {
+    console.log(req.body)
+User.create(req.body, (err, newlyCreatedOrder) =>{
+    console.log('created a new order for user ${req.body.username}');
+    User.findById(req.body.username, function (err, foundUser)
+    {
+    foundUser.order._id.push(newlyCreatedOrder._id);
+    foundUser.save((err, savedUser) => {
+        console.log(savedUser);
+        res.redirect('/user')
+        });
+    });
+})
+})
 
 
 

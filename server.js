@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 
 app.use('/order', orderController);
 app.use('/user', userController);
-app.use('/auth', logInController);
+app.use('/', logInController);
 
 
 
