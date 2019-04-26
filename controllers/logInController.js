@@ -22,7 +22,7 @@ const bcrypt = require('bcryptjs');
 // Salt is like a key to your hash
 // hash and salt get combined
 // const hashedString = bcyrpt.hashSync('Your Password here', bcrypt.genSaltSync(10));
-router.post('/register', async (req, res) => {
+router.post('/', async (req, res) => {
 
     // First we must hash the password
     const password = req.body.password;
