@@ -23,42 +23,61 @@ const bcrypt = require('bcryptjs');
 // hash and salt get combined
 // const hashedString = bcyrpt.hashSync('Your Password here', bcrypt.genSaltSync(10));
 router.post('/', async (req, res) => {
+<<<<<<< HEAD
 
+=======
+console.log(req.body)
+    //======== 3
+>>>>>>> 392c144b6222125f7aad8e68ed95f47d6f3c7063
     // First we must hash the password
     const password = req.body.password;
+    console.log(password)
     // The password hash is what we want to put in the Database
-    const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-
+    const passwordHash = await bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+    console.log(passwordHash)
 
     // create an object for the db entry, the properties of this object
     // will match up with our model
+<<<<<<< HEAD
     const newUserRegistration = {};
     //newUserRegistration is an empty object that we use to hold the username and password from req.body form
     newUserRegistration.username = req.body.username;
     newUserRegistration.password = passwordHash;
 
+=======
+    const newUserSession = {};
+    //userDbEntry is an empty object that we use to hold the username and password from req.body form
+    newUserSession.username = req.body.username;
+    newUserSession.password = passwordHash;
+>>>>>>> 392c144b6222125f7aad8e68ed95f47d6f3c7063
 
     try {
 
         //
+<<<<<<< HEAD
         const createdUser = await User.create(newUserRegistration);
+=======
+        const createdUser = await User.create(newUserSession);
+>>>>>>> 392c144b6222125f7aad8e68ed95f47d6f3c7063
 
+        req.session.createdUser = createdUser._id;
         // after you create the user, this is a great time to initialize you session object
         // add properties to the session object
         req.session.logged = true;
+<<<<<<< HEAD
         req.session.userDbId = createdUser._id;
         req.session.
 
 
+=======
+        console.log(createdUser)
+>>>>>>> 392c144b6222125f7aad8e68ed95f47d6f3c7063
         res.redirect('/user');
 
     } catch (err) {
         res.send(err)
         console.log('this error is originating from the registration')
     }
-
-
-
 });
 
 
@@ -66,8 +85,9 @@ router.post('/', async (req, res) => {
 // bcrypt.compareSync('you plain text password', 'hashedPassword')  // return true or false
 
 // make the form in login.ejs make a request to this
-router.post('/login', async (req, res) => {
+// router.post('/login', async (req, res) => {
 
+<<<<<<< HEAD
     // Query the database to see if the user exists
     try {
         const foundUser = await User.findOne({
@@ -93,24 +113,51 @@ router.post('/login', async (req, res) => {
                 req.session.message = "Username or password is incorrect";
                 res.redirect('/catering/login');
             }
+=======
+//     // Query the database to see if the user exists
+//     try {
+//         const foundUser = await User.findOne({
+//             'username': req.body.username
+//         });
+>>>>>>> 392c144b6222125f7aad8e68ed95f47d6f3c7063
 
-        } else {
+//         // Is foundUser a truthy value, if it is its the user object,
+//         // if we didn't find anything then foundUser === null a falsy value
+//         if (foundUser) {
 
-            req.session.message = 'Username or Password is incorrect';
+//             // since the user exist compare the passwords
+//             if (bcrypt.compareSync(req.body.password, foundUser.password) === true) {
+//                 // set up the session
+//                 res.session.message = '';
+//                 req.session.logged = true;
+//                 req.session.usersDbId = foundUser._id;
 
-            res.redirect('/catering/login');
-        }
+//                 console.log(req.session, ' successful in login')
+//                 res.redirect('/user');
+
+//             } else {
+//                 // redirect them back to the login with a message
+//                 req.session.message = "Username or password is incorrect";
+//                 res.redirect('/');
+//             }
+
+//         } else {
+
+//             req.session.message = 'Username or Password is incorrect';
+
+//             res.redirect('/');
+//         }
 
 
-    } catch (err) {
-        res.send(err);
-    }
+//     } catch (err) {
+//         res.send(err);
+//     }
 
 
 
 
 
-});
+// });
 
 
 router.get('/logout', (req, res) => {

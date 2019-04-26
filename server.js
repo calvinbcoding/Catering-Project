@@ -26,6 +26,7 @@ app.use(session({
   }))
 
 //route a get request to the login page
+//or /auth
 app.get('/', (req, res) => {
   //render the page with the render method on the request object
   res.render('login.ejs', {
@@ -33,6 +34,8 @@ app.get('/', (req, res) => {
     message: req.session.message
   })
 });
+
+app.use(morgan('short'));
 
 app.use('/order', orderController);
 app.use('/user', userController);

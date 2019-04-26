@@ -30,18 +30,30 @@ router.get('/new', async (req, res) => {
 });
 
 
+
 //order create
 router.post('/', async (req, res) => {
+
     try{
         const newlyCreatedOrder = await User.create(req.body);
-        const foundUser = await User.findByIdAndUpdate(req.session.userDbId);
-        foundUser.$push(newlyCreatedOrder);
-        res.render('/order')
+        console.log(newlyCreatedOrder)
+        const foundUser = await User.findById(req.session.asasuserDbId);
+        console.log(foundUser);
+ 
+        foundUser.push(newlyCreatedOrder);
+        res.render('/order') 
     } catch(err){
         res.send(err)
     }
-});
-             
+ });
+ 
+
+
+
+// /pull down order create
+// router.post('/', (req, res) => {
+//     console.log(req.body)
+// User.create(req.body, (err, newlyCreatedOrder) =>{
 //     console.log('created a new order for user ${req.body.username}');
 //     User.findById(req.session.username)
 //     {
@@ -54,24 +66,6 @@ router.post('/', async (req, res) => {
 //         res.render('/order')
 //     });
 // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
    

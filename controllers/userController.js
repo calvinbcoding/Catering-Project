@@ -40,6 +40,19 @@ router.get('/', (req, res) => {
  });
 
 
+//  //user post route
+//  router.post('/', async (req, res) => {
+//    try{
+//     const createdUser = await User.create(req.body);
+//     console.log(req.body)
+//     console.log(createdUser)
+//     res.redirect ('/user')
+    
+//    }catch(err){
+//      res.send(err);
+//    }
+//  });
+
 
 //user show
   router.get('/:id', async (req, res) => {
