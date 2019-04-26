@@ -7,18 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <% include ../partials/nav %>
+<% include ../partials/main1 %>
+
 <div class="container">
 <body>
 
-<h1>SHOW USER</h1>
+<h1 class="font-weight-light mt-4 text-white">SHOW USER</h1>
+          <p class="lead text-white-50"><h2><%=user.username%></h2></p>
 
 <a href= "/user/<%=user._id%>/edit">EDIT THIS USER</a>
 
 <form action="/user/<%=user._id%>?_method=DELETE" method="POST">
-                <button>DELETE</button>
+                <button class="btn btn-warning">DELETE</button>
 </form>
 
+<% include ../partials/main2 %>
 <% include ../partials/scripts %>
 </body>
 

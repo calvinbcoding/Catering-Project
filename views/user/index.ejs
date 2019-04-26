@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <% include ../partials/head %>
+    <% include ../partials/nav %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<% include ../partials/nav %>
-<div class="container">
+<% include ../partials/main1  %>
+<h1 class="font-weight-light mt-4 text-white">User Index</h1>
+          <p class="lead text-white-50">these are all the users</p>
 
-<body>
-<h1>USER INDEX PAGE</h1>
-    <% user.forEach((user)=>{ %>
-        <li>
-            <a href="/user/<%=user._id%>"><%=user.username%></a>
-        </li>
-    <% }) %>
+
+            <% user.forEach((user)=>{ %>
+            <li>
+                <h2><a href="/user/<%=user._id%>"><%=user.username%></a><h2>
+            </li>
+            <% }) %>
+<form action="/user/new">
+    <button class="btn btn-warning">REGISTER A NEW USER</button>
+</form>
+<% include ../partials/main2 %>
 <% include ../partials/scripts %>
-</body>
-</div>
+
+
+
+
 </html>
