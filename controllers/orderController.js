@@ -41,7 +41,8 @@ router.post('/', async (req, res) => {
         console.log(foundUser);
  
         foundUser.push(newlyCreatedOrder);
-        res.render('/order') 
+         User.order.save()
+         res.render('/order') 
     } catch(err){
         res.send(err)
     }

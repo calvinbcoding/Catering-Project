@@ -5,7 +5,8 @@ const methodOverride   = require('method-override');
 const bodyParser       = require('body-parser');
 const session          = require('express-session');
 const morgan           = require('morgan');
-const bcrypt = require('bcryptjs');
+//const MongoDBStore     = require('connect-mongodb-session')(session);
+//const bcrypt           = require('bcryptjs');
 require('./db/db');
 
 const orderController = require('./controllers/orderController');
@@ -15,13 +16,16 @@ const logInController = require('./controllers/logInController')
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static('public'))
-// app.use(morgan);
+// const store = new MongoDBStore({
+//   uri: 'mongodb://localhost/catering',
+//   collection: 'users'
+// });
 // app.use(cookie-session)
 
 app.use(session({
     secret: 'This is a random secret string that you would make up to protect your session',
-    resave: false, // says only save the cookie if there has been a change to one of properties
-    saveUninitialized: false // only save when we have mutated the session,
+    resave: true, // says only save the cookie if there has been a change to one of properties
+    saveUninitialized: true // only save when we have mutated the session,
     //this is what should be done for logins, many laws make you do this as well
   }))
 
