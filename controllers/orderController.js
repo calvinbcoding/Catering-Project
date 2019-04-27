@@ -4,24 +4,25 @@ const Order = require('../models/Order');
 const User = require('../models/User');
 
       //User new route 
-    router.get('/new', async (req, res)=>{
+router.get('/new', async (req, res)=>{
+
     try {
-        res.render('order/new.ejs');
+    res.render('order/new.ejs');
 
     } catch (err) {
-        res.send(err);
+    res.send(err);
     }
-    });
+});
 
 
 //index
 router.get('/', async (req, res) => {
     try {
-        const foundOrder = await Order.find({});
-        res.render('order/index.ejs', {
-            order: foundOrder,
+    const foundOrder = await Order.find({});
+    res.render('order/index.ejs', {
+        order: foundOrder,
 
-        });
+    })
     } catch (err) {
         res.send(err);
     }
@@ -29,7 +30,7 @@ router.get('/', async (req, res) => {
 
 
 
-// //new
+// //new route DONT USE
 // router.get('/new', async (req, res) => {
 
 //     try {
@@ -66,29 +67,6 @@ router.post('/', async (req, res) => {
  });
 
 
-
-// /pull down order create
-// router.post('/', (req, res) => {
-//     console.log(req.body)
-// User.create(req.body, (err, newlyCreatedOrder) =>{
-//     console.log('created a new order for user ${req.body.username}');
-//     User.findById(req.body.username, function (err, foundUser)
-//     {
-//     foundUser.order.push(newlyCreatedOrder._id){
-//         _id : $in 
-//     };
-
-//     foundUser.save((err, savedUser) =>{
-//         console.log(savedUser);
-//         res.redirect('/order')
-//     });
-// });
-// })
-// })
-
-   
-
-
 //order show route
 router.get('/:id', async (req, res) => {
     try{
@@ -105,7 +83,7 @@ router.get('/:id', async (req, res) => {
 
 
 
-
+//DONT USE
 // router.get('/:id', async (req, res) => {
 //     try {
 //         const foundUser = await User.findOne({'order': req.params.id}).populate({path: 'order', match: {_id: req.params.id}})
@@ -198,6 +176,23 @@ router.get('/:id', async (req, res) => {
 //  });
 
   
+// router.delete('/:id', async (req,res) => {
+//     try{
+        
+//     const deletedOrder = await Order.findByIdAndDelete(reqparams.id);
+//     const deletedUser = await User.deleteMany({
+//         _id:  {
+//             $in: user.order
+//         }
+//     })
+//     res.redirect('/order');
+//     }catch(err){
+//         res.send(err)
+//     }
+    
+// });
+
+
 //order delete route
 router.delete('/:id', async (req, res) => {
 
@@ -208,7 +203,7 @@ router.delete('/:id', async (req, res) => {
                 $in: user.order
             }
         })
-        res.redirect('/order')
+        res.redirect('/order');
 
 
     } catch (err) {
