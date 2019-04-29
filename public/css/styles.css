@@ -107,3 +107,8 @@ body {
 h1{
     font-family: 'Lobster', cursive;
 }
+.logout{
+
+    font-weight: 400;
+    color: yellow
+}

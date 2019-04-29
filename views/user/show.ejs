@@ -6,7 +6,11 @@
 </head>
 
 <% include ../partials/nav %>
+
 <% include ../partials/main1 %>
+
+
+
 
 <div class="container">
 <body>
@@ -15,13 +19,15 @@
 <h1 class="font-weight-light mt-4 text-white">Caterer</h1>
           <p class="lead text-white-50"><h2><%=user.username%></h2></p>
 
+
+
   <a class="btn btn-primary" href="/user/<%=user._id%>/edit" role="button">Edit this Caterer</a>
 
 <form action="/user/<%=user._id%>?_method=DELETE" method="POST">
                 <button class="btn btn-danger">Delete Caterer</button>
 </form>
 <a class="btn btn-warning" href="/order/new" role="button">Create An Order To Sell</a>
-
+<% include ../partials/order-card %>
 <%}else{%>
 
 
@@ -35,6 +41,7 @@
 </form>
 
 <a href= "/order/new">order some food</a>
+<% include ../partials/order-card %>
 <%}%>
 <% include ../partials/main2 %>
 <% include ../partials/scripts %>
