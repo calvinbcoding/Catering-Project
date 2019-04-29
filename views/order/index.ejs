@@ -2,7 +2,7 @@
 <html>
 <head>
 <% include ../partials/head %>
-  <title>Edit User</title>
+  <title>Order Index </title>
 </head>
 
 <% include ../partials/nav %>
@@ -11,12 +11,12 @@
 
 
 <%if (isCaterer){%>
-      <h1>All of the Caterer <%=user.username%>'s Orders</h1>
+      <h1>All of the Caterer 's Orders</h1>
 
   <%}else{%>
 
 
-      <h1>All of the Customer <%=user.username%>'s Orders</h1>
+      <h1>All of the Customer 's Orders</h1>
 
 
 
@@ -25,11 +25,11 @@
   
 
       <ul>
-        <% for(let i = 0; i < order.length; i++){ %>
-          <li>
-            <a href="/order/<%=order[i]._id%>"><%=order.caterer+ "'s" + order.type%></a>
-          </li>
-        <% } %>
+      <% order.forEach((order)=>{ %>
+            <li>
+                <h2><a href="/order/<%=order._id%>"><%=order.caterer%>'s  <%=order.type%></a><h2>
+            </li>
+      <% }) %>
       </ul>
 
 

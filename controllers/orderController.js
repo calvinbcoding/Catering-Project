@@ -3,10 +3,11 @@ const router = express.Router();
 const Order = require('../models/Order');
 const User = require('../models/User');
 
-      //User new route 
+      //order new route 
     router.get('/new', async (req, res)=>{
     try {
         res.render('order/new.ejs', {
+            user: req.session.userId,
             isCaterer: req.session.caterer
         });
 
@@ -20,6 +21,7 @@ const User = require('../models/User');
 router.get('/', async (req, res) => {
     try {
         const foundOrder = await Order.find({});
+        console.log(foundOrder)
         res.render('order/index.ejs', {
             order: foundOrder,
             isCaterer: req.session.caterer
@@ -51,15 +53,18 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
 
     try{
+        const foundUser = await User.findById(req.session.userId)
         const newlyCreatedOrder = await Order.create(req.body);
-        console.log(newlyCreatedOrder)
-        const foundUser = req.session.userId;
+        console.log(newlyCreatedOrder + '<== newly created order before')
+        console.log(req.body.type + '<== type from the form before')
+        console.log(foundUser +'<== found user before')
  
         foundUser.order.push(newlyCreatedOrder);
-        console.log(newlyCreatedOrder)
+        console.log(newlyCreatedOrder + '<== newly created order after')
+        console.log(foundUser + '<== found user after')
         foundUser.save();
-        console.log(req.session)
         res.redirect('/'); 
+        console.log(foundUser + '<== found user after saved array')
     } catch(err){
         console.log(err)
         res.send(err);
@@ -202,26 +207,48 @@ router.get('/:id', async (req, res) => {
 //  });
 
   
-//order delete route
+// //order delete route
+// router.delete('/:id', async (req, res) => {
+
+//     try {
+//         const deletedUser = await User.deleteMany({
+//             _id: {
+//                 $in: user.order
+//             }
+//         })
+//         const deletedOrder = await Order.findByIdAndDelete(req.params.id)
+
+//         res.redirect('/')
+
+
+//     } catch (err) {
+//         res.send(err)
+//     }
+
+// });
+
 router.delete('/:id', async (req, res) => {
+    // Delete the article, is the purpose of line 153
+    Order.findByIdAndRemove(req.params.id, (err, deletedOrder) => {
 
-    try {
-        const deletedOrder = await Order.findByIdAndDelete(req.params.id)
-        const deletedUser = await User.deleteMany({
-            _id: {
-                $in: user.order
+        // find the author and then remove the articles id from their articles array of ids
+        User.findOne({
+            'order': req.params.id
+        }, (err, foundUser) => {
+            if (err) {
+                res.send(err);
+            } else {
+                console.log(foundUser, "<---- foundAuthor in delete before I remove the article id")
+                foundUser.order.remove(req.params.id);
+                // since we just mutated our document ^ , now we have to save
+                foundUser.save((err, updatedUser) => {
+                    console.log(updatedUser, ' after the mutation');
+                    res.redirect('/');
+                });
             }
-        })
-        res.redirect('/order')
-
-
-    } catch (err) {
-        res.send(err)
-    }
-
+        });
+    });
 });
-
-
 
 
 
