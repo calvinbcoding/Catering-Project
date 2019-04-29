@@ -14,7 +14,8 @@ router.get('/', (req, res) => {
         res.send(err)
       } else {
         res.render('user/index.ejs', {
-          user: foundUser
+          user: foundUser,
+          isCaterer: foundUser.caterer = true
         })
       }
     });
@@ -25,10 +26,12 @@ router.get('/', (req, res) => {
 //new
 router.get('/new', async (req, res) => {
 
-  const allOrder = await User.find({})
   try {
-      res.render('order/new.ejs');
-      user: allUser
+      res.render('order/new.ejs', {
+      user: allUser,
+      isCaterer: req.session.caterer
+  });
+
   }catch(err){
       res.send(err)
   }
@@ -58,13 +61,12 @@ router.get('/new', async (req, res) => {
         const foundUser = await User.findById(req.params.id);
         res.render('user/show.ejs', {
             user: foundUser,
-            order: foundOrder
+            order: foundOrder,
+            isCaterer: foundUser.caterer
         });
-
     } catch (err) {
         res.send(err)
     }
-   
 });
 
 
@@ -76,7 +78,8 @@ router.get("/:_id/edit", async (req,res)=>{
     const foundUser = await User.findById(req.params._id)
     console.log(foundUser)
     res.render('user/edit.ejs', {
-      user:foundUser
+      user:foundUser,
+      isCaterer: req.session.caterer,
     })
 
   }catch(err){

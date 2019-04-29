@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <% include ../partials/head %>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+<head>
+<% include ../partials/head %>
+  <title>Order Index </title>
+</head>
 
-  <% include ../partials/nav %>
+<% include ../partials/nav %>
+<% include ../partials/main1%>
+
+
+
+<%if (isCaterer){%>
+      <h1>All of the Caterer 's Orders</h1>
+
+  <%}else{%>
+
+
+      <h1>All of the Customer 's Orders</h1>
+
+
+
+<%}%>
+
   
-  <body>
-  <div class="container">
-  
-  
-      <h1>All of the Orders</h1>
+
       <ul>
-        <% for(let i = 0; i < order.length; i++){ %>
-          <li>
-            <a href="/order/<%=order[i]._id%>"><%=order.caterer+ "'s" + order.type%></a>
-          </li>
-        <% } %>
+      <% order.forEach((order)=>{ %>
+            <li>
+                <h2><a href="/order/<%=order._id%>"><%=order.caterer%>'s  <%=order.type%></a><h2>
+            </li>
+      <% }) %>
       </ul>
-    </main>
-    <% include ../partials/scripts %>
-    </div>
-  </body>
+
+
+
+
+
+
+<% include ../partials/main2 %>
+<% include ../partials/scripts %>
  
 </html>
