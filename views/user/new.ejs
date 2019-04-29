@@ -13,8 +13,26 @@
         <div class="container">
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
-              <h1 class="font-weight-light mt-4 text-white">New User</h1>
-              <p class="lead text-white-50">make a new user</p>
+<%if (isCaterer){%>
+              <h1 class="font-weight-light mt-4 text-white">New Caterer</h1>
+              <p class="lead text-white-50">Register a new Caterer</p>
+              <h3 class="login-heading mb-4">make a new Caterer</h3>
+              <form action="/auth" method="POST">
+               
+                  <input type='text' class="form-control" name="username" placeholder="username" required autofocus>
+                  <label for="inputEmail">Username</label>
+
+                
+                  <input type='text' class="form-control" name="password" placeholder="password" required autofocus>
+                  <label for="password">Password</label>
+
+        
+
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Register</button>
+
+<%}else{%>
+                <h1 class="font-weight-light mt-4 text-white">New Customer</h1>
+              <p class="lead text-white-50">make a new Customer</p>
               <h3 class="login-heading mb-4">Register a new User</h3>
               <form action="/auth" method="POST">
                

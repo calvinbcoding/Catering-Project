@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <% include ../partials/head %>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <% include ../partials/nav %>
+<head>
+<% include ../partials/head %>
+  <title>Edit User</title>
+</head>
+<% include ../partials/nav %>
+<% include ../partials/main1%>
   
-  <body>
-<div class="container">
-      <h1>Make a New Order</h1>
+
+<%if (isCaterer){%>
+
+
+      <h1>Make a New Caterering Order to sell</h1>
      <form action="/order" method="POST">
         Caterer: <input type="text" name="caterer">
         Food: <input type="text" name="type">
         
         <input type="submit">
     </form>
-    </main>
-    <% include ../partials/scripts %>
-   </div>
-  </body>
 
+
+<%}else{%>
+
+
+      <h1>Make a New Catering Order to Buy</h1>
+     <form action="/order" method="POST">
+        Caterer: <input type="text" name="caterer">
+        Food: <input type="text" name="type">
+        
+        <input type="submit">
+    </form>
+
+
+<%}%>
+
+
+
+<% include ../partials/main2 %>
+<% include ../partials/scripts %>
 </html>

@@ -26,11 +26,14 @@ router.get('/', (req, res) => {
 
 
 router.post('/register', async (req, res) => {
-    if(req.body.caterer = "on"){
+    if(req.body.caterer === "on"){
         req.session.caterer = true;
         console.log(req.session)
+    }else{
+        req.session.caterer = false;
+        console.log(req.session)
     }
-console.log(req.body)
+console.log(req.session.user)
     //======== 3
     // First we must hash the password
     const password = req.body.password;
