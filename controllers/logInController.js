@@ -53,11 +53,11 @@ console.log(req.session.user)
 
         //
         const createdUser = await User.create(newUserSession);
-
         req.session.userId = createdUser._id;
         // after you create the user, this is a great time to initialize you session object
         // add properties to the session object
         req.session.logged = true;
+        if (req.session.caterer = true ){createdUser.caterer = true}
         console.log(createdUser)
         res.redirect('/user');
 
@@ -74,9 +74,9 @@ router.post('/login', async (req, res) => {
     // Query the database to see if the user exists
     try {
         const foundUser = await User.findOne({
-            'username': req.body.username
-            
+            'username': req.body.username,
         });
+    
           console.log(foundUser)
           console.log(req.body)
 
@@ -108,12 +108,12 @@ router.post('/login', async (req, res) => {
             res.redirect('/');
         }
 
-
     } catch (err) {
         res.send(err);
     }
 
-
+       
+console.log(foundUser)
 
 
 
