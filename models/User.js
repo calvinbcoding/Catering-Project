@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
     username: {type: String, required:true, unique: true},
     password: {type: String, required: true},
-    caterer: Boolean,
+    caterer: {
+        type: String,
+    },
     order: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order'
