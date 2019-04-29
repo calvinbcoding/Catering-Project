@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <% include ../partials/head %>
-    <meta charset="utf-8">
-    <title>Order Show</title>
-  </head>
-  <% include ../partials/nav %>
-  <div class="container">
-  <body>
-    <header>
+<head>
+<% include ../partials/head %>
+  <title>Edit User</title>
+</head>
+<% include ../partials/nav %>
+<% include ../partials/main1%>
+
+
+<%if (isCaterer){%>
+      <h1>This is Caterer <%=user.username%>'s Orders</h1>
       <h1><%=order.caterer+ "'s" + order.type%></h1>
-    <section>
-    <a href="/order/<%=order._id%>/edit">Edit</a>
+    <a class="btn btn-primary" href="/order/<%=order._id%>/edit" role="button">Edit</a>
+
         <form action="/order/<%=order._id%>?_method=DELETE" method="post">
             <input class="btn btn-secondary" type="submit" value="Delete Order"/>
         </form>
-    </section>
-    </main>
-    <% include ../partials/scripts %>
-  </body>
-  </div>
+
+
+<%}else{%>
+    <h1>This is Customer <%=user.username%>'s Orders</h1>
+      <h1><%=order.caterer+ "'s" + order.type%></h1>
+    <a class="btn btn-primary" href="/order/<%=order._id%>/edit" role="button">Edit</a>
+
+        <form action="/order/<%=order._id%>?_method=DELETE" method="post">
+            <input class="btn btn-secondary" type="submit" value="Delete Order"/>
+        </form>
+
+
+
+<%}%>
+
+
+
+
+
+<% include ../partials/main2 %>
+<% include ../partials/scripts %>
 </html>

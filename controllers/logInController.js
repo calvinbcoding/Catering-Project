@@ -26,11 +26,9 @@ router.get('/', (req, res) => {
 
 
 router.post('/register', async (req, res) => {
-    if(req.body.caterer = "on"){
-        req.session.caterer = true;
-        console.log(req.session)
-    }
-console.log(req.body)
+    
+
+console.log(req.session.user)
     //======== 3
     // First we must hash the password
     const password = req.body.password;
@@ -45,16 +43,17 @@ console.log(req.body)
     //userDbEntry is an empty object that we use to hold the username and password from req.body form
     newUserSession.username = req.body.username;
     newUserSession.password = passwordHash;
+    newUserSession.caterer = req.body.caterer
 
     try {
 
         //
         const createdUser = await User.create(newUserSession);
-
         req.session.userId = createdUser._id;
         // after you create the user, this is a great time to initialize you session object
         // add properties to the session object
         req.session.logged = true;
+        
         console.log(createdUser)
         res.redirect('/user');
 
@@ -71,9 +70,10 @@ router.post('/login', async (req, res) => {
     // Query the database to see if the user exists
     try {
         const foundUser = await User.findOne({
-            'username': req.body.username
-            
+            'username': req.body.username,
+            'caterer': req.session.caterer
         });
+    
           console.log(foundUser)
           console.log(req.body)
 
@@ -105,12 +105,12 @@ router.post('/login', async (req, res) => {
             res.redirect('/');
         }
 
-
     } catch (err) {
         res.send(err);
     }
 
-
+       
+console.log(foundUser)
 
 
 

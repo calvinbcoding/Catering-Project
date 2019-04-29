@@ -1,26 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <% include ../partials/head %>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+<head>
+<% include ../partials/head %>
+  <title>Edit User</title>
+</head>
 
-  <body>
+
+
+
+ 
     <% include ../partials/nav %>
-    <div class="container">
-    <main>
-      <h1>Edit This Order</h1>
-       <a href= "/order/<%=order._id%>/edit">EDIT THIS ORDER</a>
-      <form action="/order/<%=order._id%>?_method=PUT" method="post">
-      <input type="text" name="caterer" placeholder="change the caterer">
-      <input type="text" name="type" placeholder="change the food">
+    <% include ../partials/main1%>
 
+<%if (isCaterer){%>
+
+      <h1>Edit This Catering Order</h1>
+       <a href= "/order/<%=order._id%>/edit">Edit</a>
+      <form action="/order/<%=order._id%>?_method=PUT" method="post">
+        <input type="text" name="caterer" placeholder="change the caterer">
+        <input type="text" name="type" placeholder="change the food">
       </form>
-    </main>
+
+
+
+<%}else{%>
+
+      <h1>Edit This Customer's Order</h1>
+       <a href= "/order/<%=order._id%>/edit">Edit</a>
+      <form action="/order/<%=order._id%>?_method=PUT" method="post">
+        <input type="text" name="caterer" placeholder="change the caterer">
+        <input type="text" name="type" placeholder="change the food">
+      </form>
+
+
+
+
+<%}%>
+
+
+  
+
+    <% include ../partials/main2%>
     <% include ../partials/scripts %>
-   </div>
-  </body>
+
+
  
 </html>
 

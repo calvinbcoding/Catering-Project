@@ -6,7 +6,9 @@ const User = require('../models/User');
       //User new route 
     router.get('/new', async (req, res)=>{
     try {
-        res.render('order/new.ejs');
+        res.render('order/new.ejs', {
+            isCaterer: req.session.caterer
+        });
 
     } catch (err) {
         res.send(err);
@@ -20,6 +22,7 @@ router.get('/', async (req, res) => {
         const foundOrder = await Order.find({});
         res.render('order/index.ejs', {
             order: foundOrder,
+            isCaterer: req.session.caterer
 
         });
     } catch (err) {
@@ -96,7 +99,8 @@ router.get('/:id', async (req, res) => {
         const foundUser = await User.findOne({"order": req.params.id});
         
         res.render('order/show.ejs', {
-            order: foundOrder
+            order: foundOrder,
+            isCaterer: req.session.caterer
         })
     }catch(err){
         res.send(err);
