@@ -102,6 +102,22 @@ router.get('/:id', async (req, res) => {
 
   //order Edit
 
+
+  router.get('/:id/edit', async (req, res) => {
+
+    try{
+        const foundOrder = await Order.findById(req.params.id);
+        const foundUser = await User.findOne({'order': req.params.id});
+ 
+        res.render('order/edit.ejs', {
+            order: foundOrder
+        })
+    }catch(err){
+        res.send(err);
+    }
+ });
+
+
 //   router.get('/:id/edit', async (req, res)=>{
 //     // For the edit, we need to allow the user to Select all the Users when they are editing the
 //    // User, thats why we are performing User.find
