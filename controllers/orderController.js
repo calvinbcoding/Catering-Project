@@ -99,16 +99,16 @@ router.get('/:id', async (req, res) => {
   //order Edit
 
   router.get('/:id/edit', async (req, res)=>{
-
+console.log(req.params.id)
     try{
-        const findUsersOrders = await User.findOne({'order': req.params.id})
-        .populate({
-            path: 'order',
-            match: {
-                _id: req.params.id
-            }
+        const findUsersOrders = await Order.findById(req.params.id)
+        // .populate({
+        //     path: 'order',
+        //     match: {
+        //         _id: req.params.id
+        //     }
            
-        })
+        // })
             console.log(findUsersOrders)
             
             res.render('order/edit.ejs', {
@@ -132,12 +132,9 @@ router.put("/:id", async (req,res)=>{
         
    const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, {new:true});
    const foundUser = await User.findOne({
-       'order': req.params.id,
+       'order': req.params._id,
    });
-    //foundUser.order.push(updatedOrder);
-    console.log(updatedOrder + '<== newly created order after')
-    console.log(foundUser + '<== found user after')
-    //foundUser.save(foundUser.order);
+    console.log(updatedOrder + '<== newly updated order after')
     res.redirect('/');
     console.log(foundUser + '<== found user after saved array')
 
@@ -145,8 +142,6 @@ router.put("/:id", async (req,res)=>{
         console.log(err)
         res.send(err);
     }
-
-
 });
 
 
