@@ -55,16 +55,16 @@ router.post('/', async (req, res) => {
     try{
         const foundUser = await User.findById(req.session.userId)
         const newlyCreatedOrder = await Order.create(req.body);
-        console.log(newlyCreatedOrder + '<== newly created order before')
-        console.log(req.body.type + '<== type from the form before')
-        console.log(foundUser +'<== found user before')
+        // console.log(newlyCreatedOrder + '<== newly created order before')
+        // console.log(req.body.type + '<== type from the form before')
+        // console.log(foundUser +'<== found user before')
  
         foundUser.order.push(newlyCreatedOrder);
-        console.log(newlyCreatedOrder + '<== newly created order after')
-        console.log(foundUser + '<== found user after')
+        // console.log(newlyCreatedOrder + '<== newly created order after')
+        // console.log(foundUser + '<== found user after')
         foundUser.save();
         res.redirect('/'); 
-        console.log(foundUser + '<== found user after saved array')
+        // console.log(foundUser + '<== found user after saved array')
     } catch(err){
         console.log(err)
         res.send(err);
@@ -72,27 +72,6 @@ router.post('/', async (req, res) => {
     }
     
  });
-
-
-
-// /pull down order create
-// router.post('/', (req, res) => {
-//     console.log(req.body)
-// User.create(req.body, (err, newlyCreatedOrder) =>{
-//     console.log('created a new order for user ${req.body.username}');
-//     User.findById(req.body.username, function (err, foundUser)
-//     {
-//     foundUser.order.push(newlyCreatedOrder._id){
-//         _id : $in 
-//     };
-
-//     foundUser.save((err, savedUser) =>{
-//         console.log(savedUser);
-//         res.redirect('/order')
-//     });
-// });
-// })
-// })
 
    
 
@@ -115,54 +94,97 @@ router.get('/:id', async (req, res) => {
 
 
 
-// router.get('/:id', async (req, res) => {
-//     try {
-//         const foundUser = await User.findOne({'order': req.params.id}).populate({path: 'order', match: {_id: req.params.id}})
 
-//         console.log(foundUser);
-//         res.render('order/show.ejs', {
-//           user: foundUser,
-//           order: foundUser.order[0]
-//         })
-  
-//     } catch(err){
-//       res.send(err);
-//     }
-  
-//   });
 
   //order Edit
 
-//   router.get('/:id/edit', async (req, res)=>{
-//     // For the edit, we need to allow the user to Select all the Users when they are editing the
-//    // User, thats why we are performing User.find
- 
-//    // then we need to find the article and the User who owns the article that we
-//    // are trying to edit
-//    // thats why we are using User.findOne
-//    // we are using .populate to find all the order
-//    // we use match, to only populate the article that matches the article we are trying to edit
-//     try{ const allUsers = await User.find({});
-//         const 
-//         User.find({}, (err, allUsers) => {
-//      User.findOne({'order': req.params.id})
-//        .populate({path: 'order', match: {_id: req.params.id}})
-//        .exec((err, foundArticleUser) => {
-//          console.log(foundArticleUser, "<==== foundArticleUser")
-//          if(err){
-//            res.send(err);
-//          } else {
-//            res.render('order/edit.ejs', {
-//              article: foundArticleUser.order[0],
-//              Users: allUsers,
-//              articleUser: foundArticleUser
-//            })
-//          }
-//        })
- 
-//    })
-//  });
- 
+  router.get('/:id/edit', async (req, res)=>{
+
+    try{
+        const findUsersOrders = await User.findOne({'order': req.params.id})
+        .populate({
+            path: 'order',
+            match: {
+                _id: req.params.id
+            }
+           
+        })
+            console.log(findUsersOrders)
+            
+            res.render('order/edit.ejs', {
+                order: findUsersOrders,
+                isCaterer: req.session.caterer
+            })
+
+    }catch(err){
+        res.send(err)
+
+    }
+
+  });
+
+
+
+router.put("/:id", async (req,res)=>{
+
+    try{
+
+        
+   const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, {new:true});
+   const foundUser = await User.findOne({
+       'order': req.params.id,
+   });
+    //foundUser.order.push(updatedOrder);
+    console.log(updatedOrder + '<== newly created order after')
+    console.log(foundUser + '<== found user after')
+    //foundUser.save(foundUser.order);
+    res.redirect('/');
+    console.log(foundUser + '<== found user after saved array')
+
+    }catch(err){
+        console.log(err)
+        res.send(err);
+    }
+
+
+});
+
+
+
+        // const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {
+        //     new: true
+        // });
+        // const foundUser = await User.findOne({
+        //     'order': req.params.id
+        // });
+        // foundUser.order.remove(req.params.id);
+        // foundUser.save();
+    // try {
+        
+    //             .populate({
+    //                 path: 'order',
+    //                 match: {
+    //                     _id: req.params.id
+    //                 }
+    //             })
+    //             .exec((err, foundArticleUser) => {
+    //                     console.log(foundArticleUser, "<==== foundArticleUser")
+    //                     if (err) {
+    //                         res.send(err);
+    //                     } else {
+    //                         res.render('order/edit.ejs', {
+    //                             article: foundArticleUser.order[0],
+    //                             Users: allUsers,
+    //                             articleUser: foundArticleUser
+    //                         })
+    //                     }
+
+
+
+
+
+
+
 //  router.put('/:id', (req, res)=>{
 //   //if the User is changed,
 //   // 1 . then the article goes into a different User's array
@@ -207,48 +229,22 @@ router.get('/:id', async (req, res) => {
 //  });
 
   
-// //order delete route
-// router.delete('/:id', async (req, res) => {
 
-//     try {
-//         const deletedUser = await User.deleteMany({
-//             _id: {
-//                 $in: user.order
-//             }
-//         })
-//         const deletedOrder = await Order.findByIdAndDelete(req.params.id)
+router.delete('/:id', async (req,res)=>{
+    try{
 
-//         res.redirect('/')
-
-
-//     } catch (err) {
-//         res.send(err)
-//     }
-
-// });
-
-router.delete('/:id', async (req, res) => {
-    // Delete the article, is the purpose of line 153
-    Order.findByIdAndRemove(req.params.id, (err, deletedOrder) => {
-
-        // find the author and then remove the articles id from their articles array of ids
-        User.findOne({
-            'order': req.params.id
-        }, (err, foundUser) => {
-            if (err) {
-                res.send(err);
-            } else {
-                console.log(foundUser, "<---- foundAuthor in delete before I remove the article id")
-                foundUser.order.remove(req.params.id);
-                // since we just mutated our document ^ , now we have to save
-                foundUser.save((err, updatedUser) => {
-                    console.log(updatedUser, ' after the mutation');
-                    res.redirect('/');
-                });
-            }
-        });
-    });
-});
+ const deletedOrder = await Order.findByIdAndRemove(req.params.id);
+ const foundUser = await User.findOne({
+     'order': req.params.id
+ });
+ foundUser.order.remove(req.params.id)
+ foundUser.save(foundUser.order)
+ res.redirect("/")
+    }catch(err){
+        res.send(err)
+    }
+    
+})
 
 
 

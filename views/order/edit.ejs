@@ -15,10 +15,12 @@
 <%if (isCaterer){%>
 
       <h1>Edit This Catering Order</h1>
-       <a href= "/order/<%=order._id%>/edit">Edit</a>
-      <form action="/order/<%=order._id%>?_method=PUT" method="post">
+
+      <form action="/order/<%=order._id%>?_method=PUT" method="POST">
         <input type="text" name="caterer" placeholder="change the caterer">
         <input type="text" name="type" placeholder="change the food">
+        <button class="btn btn-warning" type="submit"></button>
+        
       </form>
 
 
@@ -26,10 +28,11 @@
 <%}else{%>
 
       <h1>Edit This Customer's Order</h1>
-       <a href= "/order/<%=order._id%>/edit">Edit</a>
-      <form action="/order/<%=order._id%>?_method=PUT" method="post">
+       
+      <form action="/order/<%=order._id%>?_method=PUT" method="POST">
         <input type="text" name="caterer" placeholder="change the caterer">
         <input type="text" name="type" placeholder="change the food">
+        <button class="btn btn-warning" type="submit"></button>
       </form>
 
 
