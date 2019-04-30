@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       } else {
         res.render('user/index.ejs', {
           user: foundUser,
-          isCaterer: foundUser.caterer = true
+          isCaterer: req.session.caterer = true
         })
       }
     });
@@ -57,7 +57,7 @@ router.get('/new', async (req, res) => {
   router.get('/:id', async (req, res) => {
 
     try {
-        const foundOrder = await Order.findOne({user:req.params.id})
+        const foundOrder = await Order.find({})
         const foundUser = await User.findById(req.params.id);
         res.render('user/show.ejs', {
             user: foundUser,

@@ -106,4 +106,48 @@ body {
 }
 h1{
     font-family: 'Lobster', cursive;
+    font-size: 110px;
+}
+.logout{
+
+    font-weight: 400;
+    color: yellow
+}
+
+ul{
+    display: flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+}
+li {
+    flex: 1;
+    min-width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+.spacer{
+    margin: 0 .5em
+}
+
+.center-buttons {
+    display:flex;
+    justify-content: center;
+}
+
+footer{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+}
+.middle-button{
+    flex: 2;
+    display: flex;
+    justify-content: center
+}
+
+.lead{
+    font-variant: small-caps;
+    font-weight: 600;
 }

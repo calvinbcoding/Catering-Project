@@ -55,7 +55,8 @@ console.log(req.session.user)
         req.session.logged = true;
         
         console.log(createdUser)
-        res.redirect('/user');
+        res.redirect('/user/'+req.session.userId);
+        
 
     } catch (err) {
         res.send(err)
@@ -71,11 +72,11 @@ router.post('/login', async (req, res) => {
     try {
         const foundUser = await User.findOne({
             'username': req.body.username,
-            'caterer': req.session.caterer
+//            'caterer': req.session.caterer
         });
     
-          console.log(foundUser)
-          console.log(req.body)
+          console.log(foundUser + "<=== found user")
+          console.log(req.body + "<==== req.body")
 
         // Is foundUser a truthy value, if it is its the user object,
         // if we didn't find anything then foundUser === null a falsy value
@@ -84,25 +85,22 @@ router.post('/login', async (req, res) => {
             // since the user exist compare the passwords
             if (bcrypt.compareSync(req.body.password, foundUser.password) === true) {
                 // set up the session
-                res.session.message = '';
                 req.session.logged = true;
-                req.session.userId = createdUser._id;
-
+                req.session.userId = foundUser._id;
                 console.log( ' successful in login')
-                res.redirect("/");
-        
+                res.redirect('/user');
+
 
             } else {
                 // redirect them back to the login with a message
                 req.session.message = "Username or password is incorrect";
-                res.redirect('/');
+                res.redirect('/auth');
             }
 
         } else {
-
             req.session.message = 'Username or Password is incorrect';
-
-            res.redirect('/');
+            res.redirect('/auth');
+            
         }
 
     } catch (err) {

@@ -12,12 +12,58 @@
 
 <%if (isCaterer){%>
       <h1>All of the Caterer 's Orders</h1>
+      
+  
+      <ul>
+                  <% order.forEach((order)=>{ %>
+                        <li>
+            
+            <div class="card" style="width: 18rem;">
+              <img src="https://source.unsplash.com/collection/3792026/1600x900" class="card-img-top">
+              
+            
+              <div class="card-body spacer">
+            
+                <h5 class="card-title">Caterer's Food</h5>
+                <p class="card-text">Last time you ordered food!.</p>
+                <a href="#" class="btn btn-primary">Order This Again</a>
+                <a href="#" class="btn btn-primary">Edit This Order</a>
+                <a href="#" class="btn btn-primary">Delete This Order</a>
+              </div>
+            </div>
+                        </li>
+                  <% }) %>
+                  </ul>
+
+
+
 
   <%}else{%>
 
 
       <h1>All of the Customer 's Orders</h1>
+      <ul>
+                  <% order.forEach((order)=>{ %>
+                        <li>
+            
+            <div class="card" style="width: 18rem;">
+         
 
+              <img src="https://source.unsplash.com/collection/3792026/1600x900" class="card-img-top">
+           
+            
+              <div class="card-body spacer">
+            
+                <h5 class="card-title">Caterer's Food</h5>
+                <p class="card-text">Last time you ordered food!.</p>
+                <a href="#" class="btn btn-primary">Order This Again</a>
+                <a href="#" class="btn btn-primary">Edit This Order</a>
+                <a href="#" class="btn btn-primary">Delete This Order</a>
+              </div>
+            </div>
+                        </li>
+                  <% }) %>
+                  </ul>
 
 
 <%}%>
@@ -34,6 +80,26 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+
+<p><a href="/order/new">Create another order</a></p>
 
 
 

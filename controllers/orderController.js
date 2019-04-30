@@ -20,10 +20,12 @@ const User = require('../models/User');
 //index
 router.get('/', async (req, res) => {
     try {
+        const foundUser = await User.findById(req.params.id);
         const foundOrder = await Order.find({});
         console.log(foundOrder)
         res.render('order/index.ejs', {
             order: foundOrder,
+            user:foundUser,
             isCaterer: req.session.caterer
 
         });
@@ -63,7 +65,7 @@ router.post('/', async (req, res) => {
         // console.log(newlyCreatedOrder + '<== newly created order after')
         // console.log(foundUser + '<== found user after')
         foundUser.save();
-        res.redirect('/'); 
+        res.redirect('/user/'+req.session.userId); 
         // console.log(foundUser + '<== found user after saved array')
     } catch(err){
         console.log(err)
