@@ -21,27 +21,107 @@
 
 
 
-  <a class="btn btn-primary" href="/user/<%=user._id%>/edit" role="button">Edit this Caterer</a>
-
-<form action="/user/<%=user._id%>?_method=DELETE" method="POST">
+<div class="btn-toolbar center-buttons" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <a class="btn btn-primary" href="/user/<%=user._id%>/edit" role="button">Edit this User</a>
+  </div>
+  <div class="btn-group mr-2 middle-button" role="group" aria-label="Second group">
+    <a class="btn btn-warning" href="/order/new" role="button">Create An Order To Sell</a>
+  </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+    <form action="/user/<%=user._id%>?_method=DELETE" method="POST">
                 <button class="btn btn-danger">Delete Caterer</button>
 </form>
-<a class="btn btn-warning" href="/order/new" role="button">Create An Order To Sell</a>
-<% include ../partials/order-card %>
+  </div>
+</div>
+
+
+  
+      <ul>
+      <% order.forEach((order)=>{ %>
+            <li>
+
+<div class="card" style="width: 18rem;">
+  <img src="https://source.unsplash.com/collection/3792026/1600x900" class="card-img-top">
+  
+
+  <div class="card-body spacer">
+
+    <h5 class="card-title">Caterer's Food</h5>
+    <p class="card-text">Last time you ordered food!.</p>
+    <a href="#" class="btn btn-primary">Order This Again</a>
+    <a href="#" class="btn btn-primary">Edit This Order</a>
+    <a href="#" class="btn btn-primary">Delete This Order</a>
+  </div>
+</div>
+            </li>
+      <% }) %>
+      </ul>
+
+
+
+
+
+
 <%}else{%>
 
 
 <h1 class="font-weight-light mt-4 text-white">Hello <%=`${user.username}`%>!</h1>
           <p class="lead text-white-50"><h2><%=user.username%></h2></p>
 
-<a href= "/user/<%=user._id%>/edit">Edit Account</a>
+
+
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+  <a class="btn btn-primary" href="/user/<%=user._id%>/edit" role="button">Edit this User</a>
+  </div>
+  <div class="btn-group mr-2" role="group" aria-label="Second group">
+    <a class="btn btn-warning" href="/order/new" role="button">Create An Order To Buy</a>
+  </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+    
+
+
 
 <form action="/user/<%=user._id%>?_method=DELETE" method="POST">
                 <button class="btn btn-warning">DELETE</button>
 </form>
 
-<a href= "/order/new">order some food</a>
-<% include ../partials/order-card %>
+  </div>
+</div>
+
+
+
+
+  
+      <ul>
+      <% order.forEach((order)=>{ %>
+            <li>
+
+<div class="card" style="width: 18rem;">
+  <img src="https://source.unsplash.com/collection/3792026/1600x900" class="card-img-top">
+  
+
+  <div class="card-body">
+
+    <h5 class="card-title">Caterer's Food</h5>
+    <p class="card-text">Last time you ordered food!.</p>
+    <a href="#" class="btn btn-primary">Order This Again</a>
+    <a href="#" class="btn btn-primary">Edit This Order</a>
+    <a href="#" class="btn btn-primary">Delete This Order</a>
+  </div>
+</div>
+            </li>
+      <% }) %>
+      </ul>
+
+
+
+
+
+
+
+
 <%}%>
 <% include ../partials/main2 %>
 <% include ../partials/scripts %>

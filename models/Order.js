@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const ordersSchema = new mongoose.Schema({
-    caterer: {type: String, required:true, unique: true},
+    caterer: {type: String, required:true},
     type: {type: String, required: true},
     price: Number,
     user: [{
