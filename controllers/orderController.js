@@ -236,7 +236,7 @@ router.delete('/:id', async (req,res)=>{
  });
  foundUser.order.remove(req.params.id)
  foundUser.save(foundUser.order)
- res.redirect("/")
+ res.redirect("'/order")
     }catch(err){
         res.send(err)
     }
