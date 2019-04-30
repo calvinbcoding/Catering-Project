@@ -9,8 +9,21 @@
 
 
 <%if (isCaterer){%>
-      <h1>This is Caterer 's Orders</h1>
-      <h1><%=order.caterer+ "'s" + order.type%></h1>
+      
+
+  <ul>
+      <% user.forEach((order)=>{ %>
+            <li>
+                <h2><a href="/order/<%=order._id%>"><%=order.caterer%>'s  <%=order.type%></a><h2>
+            </li>
+      <% }) %>
+  </ul>
+
+
+
+
+  
+      <h1><%=order.caterer+ "'s " + order.type%></h1>
     <a class="btn btn-primary" href="/order/<%=order._id%>/edit" role="button">Edit</a>
 
         <form action="/order/<%=order._id%>?_method=DELETE" method="post">
