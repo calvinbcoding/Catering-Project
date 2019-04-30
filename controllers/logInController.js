@@ -55,7 +55,8 @@ console.log(req.session.user)
         req.session.logged = true;
         
         console.log(createdUser)
-        res.redirect('/user');
+        res.redirect('/user/'+req.session.userId);
+        
 
     } catch (err) {
         res.send(err)
@@ -87,8 +88,9 @@ router.post('/login', async (req, res) => {
                 req.session.logged = true;
                 req.session.userId = foundUser._id;
                 console.log( ' successful in login')
-                res.redirect("/");
-        
+                res.redirect('/user');
+
+
             } else {
                 // redirect them back to the login with a message
                 req.session.message = "Username or password is incorrect";
@@ -97,7 +99,8 @@ router.post('/login', async (req, res) => {
 
         } else {
             req.session.message = 'Username or Password is incorrect';
-            res.redirect('/');
+            res.redirect('/auth');
+            
         }
 
     } catch (err) {
