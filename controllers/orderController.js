@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
         // console.log(newlyCreatedOrder + '<== newly created order after')
         // console.log(foundUser + '<== found user after')
         foundUser.save();
-        res.redirect('/'); 
+        res.redirect('/order'); 
         // console.log(foundUser + '<== found user after saved array')
     } catch(err){
         console.log(err)

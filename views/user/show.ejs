@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,21 +17,21 @@
 <body>
 
 <%if (isCaterer === "on"){%>
-<h1 class="font-weight-light mt-4 text-white">Caterer</h1>
+<h1 class="font-weight-light mt-4 text-white">Caterer Account Page</h1>
           <p class="lead text-white-50"><h2><%=user.username%></h2></p>
 
 
 
 <div class="btn-toolbar center-buttons" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group mr-2" role="group" aria-label="First group">
-    <a class="btn btn-primary" href="/user/<%=user._id%>/edit" role="button">Edit this User</a>
+    <a class="btn btn-primary" href="/user/<%=user._id%>/edit" role="button">Edit Your Account</a>
   </div>
   <div class="btn-group mr-2 middle-button" role="group" aria-label="Second group">
     <a class="btn btn-warning" href="/order/new" role="button">Create An Order To Sell</a>
   </div>
   <div class="btn-group" role="group" aria-label="Third group">
     <form action="/user/<%=user._id%>?_method=DELETE" method="POST">
-                <button class="btn btn-danger">Delete Caterer</button>
+                <button class="btn btn-danger">Delete Account</button>
 </form>
   </div>
 </div>
@@ -129,4 +130,3 @@
 
 </div>
 </html>
-

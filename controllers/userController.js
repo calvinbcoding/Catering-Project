@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       } else {
         res.render('user/index.ejs', {
           user: foundUser,
-          isCaterer: foundUser.caterer = true
+          isCaterer: req.session.caterer = true
         })
       }
     });
