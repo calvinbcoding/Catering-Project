@@ -8,22 +8,21 @@
 <% include partials/main1 %>
 
 <%if (isCaterer){%>
-<h1>Thank You <%=user.username%> For Creating a Catering Package from for Sale!</h1>
-
-order.caterer
-order.type
-
-
-
-
+<div>
+    
+ 
+     <h1>Thank You <%=user.username%>! <br> 
+    You have created an order package of <%=order.type%> for sale!</h1> 
+    
+</div>
 
 <%}else{%>
 
 
+    <h1> Congratulations <%=user.username%>! </h1> <br>
+    <h2>You have placed an order for <%=order.type%> from <%=order.caterer%></h2>
 
-
-
-<%}%>
+    <%}%>
 
 
 <% include partials/main2 %>
