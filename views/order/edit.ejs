@@ -19,6 +19,8 @@
       <form action="/order/<%=order._id%>?_method=PUT" method="POST">
         <input type="text" name="caterer" placeholder="change the caterer">
         <input type="text" name="type" placeholder="change the food">
+        <input type="text" name="price" placeholder="change the price">
+        
         <button class="btn btn-warning" type="submit"></button>
         
       </form>
@@ -30,8 +32,9 @@
       <h1>Edit This Customer's Order</h1>
        
       <form action="/order/<%=order._id%>?_method=PUT" method="POST">
-        <input type="text" name="caterer" placeholder="change the caterer">
-        <input type="text" name="type" placeholder="change the food">
+        <input type="text" name="caterer" placeholder="change your caterer">
+        <input type="text" name="type" placeholder="change your food">
+        <input type="text" name="price" placeholder="set your budget">
         <button class="btn btn-warning" type="submit"></button>
       </form>
 
