@@ -20,10 +20,12 @@ const User = require('../models/User');
 //index
 router.get('/', async (req, res) => {
     try {
+        const foundUser = await User.findById(req.params.id);
         const foundOrder = await Order.find({});
         console.log(foundOrder)
         res.render('order/index.ejs', {
             order: foundOrder,
+            user:foundUser,
             isCaterer: req.session.caterer
 
         });
