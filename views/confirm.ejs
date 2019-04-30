@@ -4,6 +4,7 @@
   <% include partials/head %>
   <title>Welcome</title>
 </head>
+
 <% include partials/nav %>
 <% include partials/main1 %>
 
@@ -11,7 +12,7 @@
 <div>
     
  
-     <h1>Thank You <%=user.username%>! <br> 
+     <h1>Thank You <%=user%>! <br> 
     You have created an order package of <%=order.type%> for sale!</h1> 
     
 </div>
@@ -19,8 +20,9 @@
 <%}else{%>
 
 
-    <h1> Congratulations <%=user.username%>! </h1> <br>
-    <h2>You have placed an order for <%=order.type%> from <%=order.caterer%></h2>
+    <h1> Congratulations <%=user%>! </h1> <br>
+    <h2>You have ordered a <%=order.type%> catering package from <br>
+       <%=order.caterer%>  </h2>
 
     <%}%>
 

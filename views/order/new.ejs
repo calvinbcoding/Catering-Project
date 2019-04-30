@@ -10,7 +10,7 @@
 <%if (isCaterer){%>
 
 
-      <h1>Make a New Caterering Order to sell</h1>
+      <h1>Make a New <br>Caterering Order</h1>
      <form action="/order" method="POST">
         Caterer: <input type="text" name="caterer">
         Food: <input type="text" name="type">
@@ -23,7 +23,7 @@
 <%}else{%>
 
 
-      <h1>Make a New Catering Order to Buy</h1>
+      <h1>Make a New <br>Catering Order</h1>
      <form action="/order" method="POST">
         Caterer: <input type="text" name="caterer">
         Food: <input type="text" name="type">
@@ -32,7 +32,7 @@
     </form>
 
 
-<%}%>
+<% } %>
 
 
 

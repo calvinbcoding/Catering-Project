@@ -94,7 +94,33 @@ router.get('/:id', async (req, res) => {
 });
 
 
-
+router.get('/:id/confirm', async (req, res)=>{
+    console.log(req.params.id)
+        try{
+            
+            const findUsersOrders = await Order.findById(req.params.id).populate('order')
+            // .populate({
+            //     path: 'order',
+            //     match: {
+            //         _id: req.params.id
+            //     }
+               
+            // })
+                console.log(findUsersOrders)
+                
+                res.render('./confirm.ejs', {
+                    order: findUsersOrders,
+                    user: req.session.username,
+                    isCaterer: req.session.caterer
+                })
+    
+        }catch(err){
+            res.send(err)
+    
+        }
+    
+      });
+    
 
 
 
@@ -236,7 +262,7 @@ router.delete('/:id', async (req,res)=>{
  });
  foundUser.order.remove(req.params.id)
  foundUser.save(foundUser.order)
- res.redirect("'/order")
+ res.redirect("/order")
     }catch(err){
         res.send(err)
     }

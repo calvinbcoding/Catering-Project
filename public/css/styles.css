@@ -136,7 +136,7 @@ li {
 }
 
 footer{
-        position: fixed;
+        position: relative;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -150,4 +150,17 @@ footer{
 .lead{
     font-variant: small-caps;
     font-weight: 600;
+}
+
+#main-logo-font{
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 100px;
+}
+
+a{
+    color:black;
+}
+
+a:hover{
+    color: yellow;
 }

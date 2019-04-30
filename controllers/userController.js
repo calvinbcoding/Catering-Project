@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       } else {
         res.render('user/index.ejs', {
           user: foundUser,
-          isCaterer: req.session.caterer = true
+          isCaterer: req.session.caterer
         })
       }
     });
@@ -29,7 +29,7 @@ router.get('/new', async (req, res) => {
   try {
       res.render('order/new.ejs', {
       user: allUser,
-      isCaterer: req.session.caterer
+      isCaterer: req.session.caterer      
   });
 
   }catch(err){
