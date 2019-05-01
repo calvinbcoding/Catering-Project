@@ -12,16 +12,16 @@
     <% include ../partials/nav %>
     <% include ../partials/main1%>
 
-<%if (isCaterer){%>
+   <%if (isCaterer === "on"){%>
 
       <h1>Edit This Catering Order</h1>
 
       <form action="/order/<%=order._id%>?_method=PUT" method="POST">
         <input type="text" name="caterer" placeholder="change the caterer">
         <input type="text" name="type" placeholder="change the food">
-        <input type="text" name="price" placeholder="change the price">
+       
         
-        <button class="btn btn-warning" type="submit"></button>
+        <button class="btn btn-warning" type="submit">Submit Changes</button>
         
       </form>
 
@@ -34,8 +34,8 @@
       <form action="/order/<%=order._id%>?_method=PUT" method="POST">
         <input type="text" name="caterer" placeholder="change your caterer">
         <input type="text" name="type" placeholder="change your food">
-        <input type="text" name="price" placeholder="set your budget">
-        <button class="btn btn-warning" type="submit"></button>
+      
+        <button class="btn btn-warning" type="submit">Submit Changes</button>
       </form>
 
 

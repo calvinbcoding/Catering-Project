@@ -8,9 +8,9 @@
 <% include ../partials/nav %>
 <% include ../partials/main1  %>
 
-<%if (isCaterer){%>
-<h1 class="font-weight-light mt-4 text-white">Edit Caterer</h1>
-          <p class="lead text-white-50">edit username and password here</p>
+<%if (isCaterer === "on"){%>
+<h1 class="font-weight-light mt-4 text-white">Edit Your mmmm Account</h1>
+          <p class="lead text-white-50">Edit username and password here</p>
   
   
   <form action="/user/<%=user._id%>?_method=PUT" method="post">
@@ -20,7 +20,7 @@
     <button class="btn btn-warning" type="submit"></button>
 
 <%}else{%>
-<h1 class="font-weight-light mt-4 text-white">Edit Customer</h1>
+<h1 class="font-weight-light mt-4 text-white">Edit Your Account</h1>
           <p class="lead text-white-50">edit username and password here</p>
   
   
@@ -28,7 +28,7 @@
     <input type="text" name="username" placeholder="change username">
     <input type="password" name="password" placeholder="update password">
     
-    <button class="btn btn-warning" type="submit"></button>
+    <button class="btn btn-warning" type="submit">Submit Your Updates</button>
 
 <%}%>
 

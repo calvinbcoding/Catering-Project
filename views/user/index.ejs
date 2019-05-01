@@ -8,8 +8,8 @@
 <% include ../partials/nav %>
 <% include ../partials/main1%>
 
-<h1 class="font-weight-light mt-4 text-white">Welcome New User</h1>
-          <p class="lead text-white-50">Click on your name below to get started:</p>
+<h1 class="font-weight-light mt-4 text-white">All Users</h1>
+          <p class="lead text-white-50">Click on your name below to access your account, and start making orders</p>
 
 
             <% user.forEach((user)=>{ %>
@@ -17,9 +17,7 @@
                 <h2><a href="/user/<%=user._id%>"><%=user.username%></a><h2>
             </li>
             <% }) %>
-<form action="/user/new">
-    <button class="btn btn-warning">REGISTER A NEW USER</button>
-</form>
+
 <% include ../partials/main2 %>
 <% include ../partials/scripts %>
 

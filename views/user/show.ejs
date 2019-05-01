@@ -18,46 +18,40 @@
 <div class="container">
 <body>
 
-<%if (isCaterer){%>
-<h1 class="font-weight-light mt-4 text-white">Caterer Account Page</h1>
+<%if (isCaterer === "on"){%>
+<h1 class="font-weight-light mt-4 text-white"> <%=user.username%>'s <br>
+   Caterer Account</h1>
           <p class="lead text-white-50">Below are all the orders that you have created!</h2></p>
 
 
-          <ul>
-              <% user.order.forEach((order)=>{ %>
-                    <li>
-                        <h2><a href="/order/<%=order._id%>"><%=order.caterer%>'s  <%=order.type%></a><h2>
-                    </li>
-              <% }) %>
-              </ul>
-
+      <ul>
+        <% user.order.forEach((order)=>{ %>
+          <li>
+              <h2><a href="/order/<%=order._id%>"><%=order.caterer%>'s  <%=order.type%></a><h2>
+          </li>
+        <% }) %>
+      </ul>
 
 
 <div class="btn-toolbar center-buttons" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group mr-2" role="group" aria-label="First group">
     <a class="btn btn-primary" href="/user/<%=user._id%>/edit" role="button">Edit Your Account</a>
   </div>
+
   <div class="btn-group mr-2 middle-button" role="group" aria-label="Second group">
     <a class="btn btn-warning" href="/order/new" role="button">Create An Order To Sell</a>
   </div>
+
   <div class="btn-group" role="group" aria-label="Third group">
     <form action="/user/<%=user._id%>?_method=DELETE" method="POST">
                 <button class="btn btn-danger">Delete Account</button>
 </form>
+
   </div>
 </div>
 
 
-
-
-
-
-
-
 <%}else{%>
-
-
-  
 
 
 <h1 class="font-weight-light mt-4 text-white">Hello <%=`${user.username}`%>!</h1>
@@ -65,41 +59,35 @@
             edit your account information, delete your account or, <br>
             Request an order for local caterers to browse. </h2></p>
 
+            <h3>If you have placed catering requests, they will be displayed below</h3>
+
+
+        <ul>
+          <% user.order.forEach((order)=>{ %>
+            <li>
+                <h2><a href="/order/<%=order._id%>"><%=order.caterer%>'s  <%=order.type%></a><h2>
+            </li>
+          <% }) %>
+        </ul>
+
+    <div class="btn-toolbar center-buttons" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-primary" href="/user/<%=user._id%>/edit" role="button">Edit Your Account</a>
+      </div>
+      <div class="btn-group mr-2 middle-button" role="group" aria-label="Second group">
+        <a class="btn btn-warning" href="/order/new" role="button">Request An Order </a>
+      </div>
+      <div class="btn-group" role="group" aria-label="Third group">
+        <form action="/user/<%=user._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete Account</button>
+    </form>
+      </div>
+    </div>
 
 
 
+<% } %>
 
-<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-  <div class="btn-group mr-2" role="group" aria-label="First group">
-  <a class="btn btn-primary" href="/user/<%=user._id%>/edit" role="button">Edit User Account Information</a>
-  </div>
-  <div class="btn-group mr-2" role="group" aria-label="Second group">
-    <a class="btn btn-warning" href="/order/new" role="button">Create An Order To Buy</a>
-  </div>
-  <div class="btn-group" role="group" aria-label="Third group">
-    
-
-
-
-<form action="/user/<%=user._id%>?_method=DELETE" method="POST">
-                <button class="btn btn-warning">Delete Account</button>
-</form>
-
-  </div>
-</div>
-
-
-
-
-  
-
-
-
-
-
-
-
-<%}%>
 <% include ../partials/main2 %>
 <% include ../partials/scripts %>
 </body>

@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const sess = require('express-session');
 const User  = require('../models/User');
 const Order = require('../models/Order');
 
@@ -15,7 +16,7 @@ router.get('/', (req, res) => {
       } else {
         res.render('user/index.ejs', {
           user: foundUser,
-          isCaterer: req.session.caterer = true
+          isCaterer: req.session.caterer
         })
       }
     });
@@ -27,9 +28,10 @@ router.get('/', (req, res) => {
 router.get('/new', async (req, res) => {
 
   try {
+    let sess = req.session;
       res.render('order/new.ejs', {
       user: allUser,
-      isCaterer: req.session.caterer
+      isCaterer: req.session.caterer      
   });
 
   }catch(err){
@@ -77,12 +79,14 @@ router.get('/new', async (req, res) => {
 router.get("/:_id/edit", async (req,res)=>{
   try {
     const foundUser = await User.findById(req.params._id)
-    console.log(foundUser)
+    
+    console.log(newUserSession)
     res.render('user/edit.ejs', {
       user:foundUser,
-      isCaterer: req.session.caterer,
+      isCaterer: newUserSession.caterer,
     })
 
+    
   }catch(err){
     res.send(err)
   }
