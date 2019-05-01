@@ -44,6 +44,13 @@ body {
     border-radius: 2rem;
 }
 
+.jumbotron-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 1;
+    border-radius: 0;
+}
+
 .form-label-group {
     position: relative;
     margin-bottom: 1rem;
@@ -163,4 +170,29 @@ a{
 
 a:hover{
     color: yellow;
+    text-decoration: none;
+}
+
+#c8rd{
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 75px;
+}
+
+.register-button{
+    color:white;
+    background-color:black;
+}
+
+.btn-primary{
+    border-color: white;
+}
+
+#nav-logo{
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 18px;
+}
+
+.nav-font{
+    font-weight: 700;
+    font-size: 18px;
 }

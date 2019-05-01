@@ -3,6 +3,8 @@ const router = express.Router();
 const Order = require('../models/Order');
 const User = require('../models/User');
 
+
+  
       //order new route 
     router.get('/new', async (req, res)=>{
     try {
@@ -20,7 +22,7 @@ const User = require('../models/User');
 //index
 router.get('/', async (req, res) => {
     try {
-        const foundUser = await User.findById(req.params.id);
+        const foundUser = await User.findById(req.params.id).populate('order');
         const foundOrder = await Order.find({});
         console.log(foundOrder)
         res.render('order/index.ejs', {
@@ -53,8 +55,9 @@ router.get('/', async (req, res) => {
 
 //order create
 router.post('/', async (req, res) => {
-
+    
     try{
+    
         const foundUser = await User.findById(req.session.userId)
         const newlyCreatedOrder = await Order.create(req.body);
         // console.log(newlyCreatedOrder + '<== newly created order before')
@@ -86,6 +89,7 @@ router.get('/:id', async (req, res) => {
         
         res.render('order/show.ejs', {
             order: foundOrder,
+            user: req.session.user,
             isCaterer: req.session.caterer
         })
     }catch(err){
@@ -93,10 +97,11 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-
+//confirm route
 router.get('/:id/confirm', async (req, res)=>{
     console.log(req.params.id)
         try{
+          
             
             const findUsersOrders = await Order.findById(req.params.id).populate('order')
             // .populate({
@@ -163,7 +168,7 @@ router.put("/:id", async (req,res)=>{
        'order': req.params._id,
    });
     console.log(updatedOrder + '<== newly updated order after')
-    res.redirect('/');
+    res.redirect('/order');
     console.log(foundUser + '<== found user after saved array')
 
     }catch(err){

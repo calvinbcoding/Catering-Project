@@ -6,7 +6,8 @@
 </head>
 
 <% include partials/main1 %>
-<h1>Welcome!</h1>
+
+<a href = "/"><span id="c8rd">C8RD</span></h2></a>
 
 
 <form action="/auth/register" method="POST">
@@ -21,16 +22,15 @@
   
   Are you a caterer? <input type="checkbox" name="caterer">
 
-  <button type="submit" class="btn btn-primary btn-lg btn-block">Register a New User</button>
+  <button type="submit" class="btn btn-primary btn-lg btn-block register-button">Register a New User</button>
 
 </form>
 
 
-
-
-
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
+ 
+      <h1>Welcome!</h1>
     <p class="lead">We help you choose the right caterer for the right price. <br> 
       Please register if you are new user; <br>
       If you are returning, please login below.</p>
@@ -46,7 +46,7 @@
   <div class="form-group">
     <input type="password" class="form-control" name= "password"id="exampleInputPassword1" placeholder="Password">
   </div>
-  <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+  <button type="submit" class="btn btn-primary btn-lg btn-block register-button">Login</button>
 </form>
 <h2><%=message%></h2>
 

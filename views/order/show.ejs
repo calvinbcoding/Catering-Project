@@ -8,19 +8,8 @@
 <% include ../partials/main1%>
 
 
-<%if (isCaterer){%>
+<%if (isCaterer === "on"){%>
       
-
-  <ul>
-      <% user.forEach((order)=>{ %>
-            <li>
-                <h2><a href="/order/<%=order._id%>"><%=order.caterer%>'s  <%=order.type%></a><h2>
-            </li>
-      <% }) %>
-  </ul>
-
-
-
 
   
       <h1><%=order.caterer+ "'s " + order.type%></h1>

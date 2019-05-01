@@ -7,10 +7,10 @@
 <% include ../partials/nav %>
 <% include ../partials/main1%>
   
-<%if (isCaterer){%>
+<%if (isCaterer === "on"){%>
 
 
-      <h1>Make a New <br>Caterering Order</h1>
+      <h1> <br>Create a new Caterering Order to Sell</h1>
      <form action="/order" method="POST">
         Caterer: <input type="text" name="caterer">
         Food: <input type="text" name="type">
