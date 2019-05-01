@@ -61,11 +61,11 @@ router.get('/new', async (req, res) => {
     try {
         const foundOrder = await Order.find({});
         const foundUser = await User.findById(req.params.id).populate('order')
-        
+        console.log(req.session.caterer)
         res.render('user/show.ejs', {
             user: foundUser,
             order: foundOrder,
-            isCaterer: foundUser.caterer
+            isCaterer: req.session.caterer
         });
     } catch (err) {
         res.send(err)
@@ -80,10 +80,10 @@ router.get("/:_id/edit", async (req,res)=>{
   try {
     const foundUser = await User.findById(req.params._id)
     
-    console.log(newUserSession)
+    console.log(foundUser)
     res.render('user/edit.ejs', {
       user:foundUser,
-      isCaterer: newUserSession.caterer,
+      isCaterer: req.session.caterer,
     })
 
     

@@ -8,12 +8,16 @@
 <% include partials/nav %>
 <% include partials/main1 %>
 
-<%if (isCaterer === "on"){%>
+<%if (isCaterer){%>
 <div>
     
  
      <h1>Thank You <%=user%>! <br> 
     You have created an order package of <%=order.type%> for sale!</h1> 
+
+    Check your email, C8RD sent you all the information you will need to contact the customer <br>
+
+      Call the customer in a day (or two) and confirm their order.<br>
     
 </div>
 
@@ -24,6 +28,7 @@
     <h2>You have ordered a <%=order.type%> catering package from <br>
        <%=order.caterer%>  </h2>
 
+<h2> <%=order.caterer%> will be in contact with you soon!
     <%}%>
 
 

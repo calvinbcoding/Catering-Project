@@ -25,6 +25,7 @@ router.get('/', async (req, res) => {
         const foundUser = await User.findById(req.params.id).populate('order');
         const foundOrder = await Order.find({});
         console.log(foundOrder)
+        console.log(req.session.caterer)
         res.render('order/index.ejs', {
             order: foundOrder,
             user:foundUser,
