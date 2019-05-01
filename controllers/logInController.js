@@ -27,9 +27,9 @@ router.get('/', (req, res) => {
 
 
 router.post('/register', async (req, res) => {
-    if(req.body.caterer = "on"){
-        req.session.caterer = "on";
-        console.log(req.session)
+    if(req.body.caterer === "on"){
+        req.session.caterer = true;
+        console.log(req.session.caterer + "<=====req.session.caterer")
     }
 console.log(req.session.user)
     //======== 3
@@ -46,7 +46,7 @@ console.log(req.session.user)
     //userDbEntry is an empty object that we use to hold the username and password from req.body form
     newUserSession.username = req.body.username;
     newUserSession.password = passwordHash;
-    newUserSession.caterer = req.body.caterer
+    //newUserSession.caterer = req.body.caterer
 
     try {
 
@@ -70,7 +70,11 @@ console.log(req.session.user)
 
 //make the form in login.ejs make a request to this
 router.post('/login', async (req, res) => {
-
+    //this line of code needs to go at the top of each post route on the loginController above the try block
+    if (req.body.caterer = "on") {
+        req.session.caterer = true;
+        console.log(req.session.caterer + "<=====req.session.caterer")
+    }
     // Query the database to see if the user exists
     try {
         const foundUser = await User.findOne({

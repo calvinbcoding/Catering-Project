@@ -8,7 +8,7 @@
 <% include ../partials/main1%>
 
 
-<%if (isCaterer === "on"){%>
+<%if (isCaterer){%>
       
 
   
@@ -21,7 +21,7 @@
 
 
 <%}else{%>
-    <h1>This is Customer 's Orders</h1>
+    <h1>Customer's Order</h1>
       <h1><%=order.caterer+ "'s " + order.type%></h1>
     
 
@@ -34,16 +34,19 @@
             <a class="btn btn-primary" href="/order/<%=order._id%>/edit" role="button">Edit</a>
         </div>
      
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-           
-          <a class="btn btn-primary" href="/order/<%=order._id%>/confirm" role="button">Buy</a>
-      </div>
-        
-          <div class="btn-group mr-2" role="group" aria-label="First group">
+               <div class="btn-group mr-2" role="group" aria-label="First group">
             <form action="/order/<%=order._id%>?_method=DELETE" method="post">
               <input class="btn btn-secondary" type="submit" value="Delete Order"/>
           </form>
            
+
+
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+
+          <a class="btn btn-primary" href="/order/<%=order._id%>/confirm" role="button">Buy</a>
+      </div>
+        
+
         </div>
         </div>
 
